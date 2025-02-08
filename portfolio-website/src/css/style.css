@@ -1,0 +1,172 @@
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+          background-color: #121212;
+          color: #fff;
+        }
+
+        .navbar {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 1rem;
+          position: fixed;
+          width: 100%;
+          z-index: 100;
+          background-color: #121212; 
+          min-height: 60px;
+      }
+
+      .logo {
+        height: auto;
+        font-size: 5vw;
+        font-weight: bold;
+        padding-right: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.01em;
+        display: flex;
+        flex-direction: row;
+        font-family: coolvetica;
+        align-items: flex-end;
+        flex-shrink: 0; /* Empêche le logo de rétrécir */
+      }
+
+      .nav-links {
+        display: flex;
+        justify-content: center;
+        flex-grow: 1; /* Permet aux liens de prendre l'espace central */
+        gap: 20px; /* Augmente l'espacement entre les liens */
+    }
+      
+      .nav-links a {
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 0.9rem;
+        padding: 10px 20px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        white-space: nowrap; /* Empêche les liens de sauter à la ligne */
+        min-width: 120px; /* Empêche que les boutons deviennent trop petits */
+        max-width: fit-content; /* Garde les boutons à une taille normale */
+        text-align: center;
+        display: inline-block;
+        
+    }
+      
+
+    .nav-links a:hover {
+      border-color: rgba(255, 255, 255, 0.5);
+      background: rgba(255, 255, 255, 0.05);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  }
+
+        .nav-links a::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.1),
+            transparent
+          );
+          transition: 0.5s;
+        }
+
+        .nav-links a:hover::before {
+          left: 100%;
+        }
+
+        .contact-info {
+          text-align: right;
+          white-space: nowrap; /* Empêche l'adresse et le numéro de téléphone de se superposer */
+          flex-shrink: 0; /* Empêche la réduction de la section contact */
+          
+      }
+
+        .main-content {
+          padding-top: 6rem;
+        }
+
+        .portfolio-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          gap: 1rem;
+          padding: 1rem;
+        }
+
+        .portfolio-item {
+          position: relative;
+          overflow: hidden;
+          aspect-ratio: 1;
+        }
+
+        .portfolio-item img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.3s ease;
+        }
+
+        .portfolio-item:hover img {
+          transform: scale(1.05);
+        }
+
+        .brand-name {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          font-size: 32vw;
+          font-weight: bold;
+          padding-right: 1rem;
+          text-transform: uppercase;
+          letter-spacing: -0.02em;
+          display: flex;
+          flex-direction: row-reverse;
+          font-family: coolvetica;
+          width: 100%;
+          align-items: flex-end;
+        }
+
+        .description {
+          max-width: 400px;
+          padding: 2rem;
+          font-size: 1.2rem;
+          line-height: 1.4;
+        }
+
+/* Amélioration responsive */
+@media (max-width: 768px) {
+  .navbar {
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+  }
+
+  .nav-links {
+      flex-direction: column;
+      width: 100%;
+      align-items: center;
+  }
+
+  .contact-info {
+      text-align: center;
+  }
+
+  .brand-name {
+      font-size: 3rem;
+      text-align: center;
+  }
+}
