@@ -1,5 +1,3 @@
-# FILE: /portfolio-website/portfolio-website/README.md
-
 # Portfolio Website
 
 This is a simple portfolio website showcasing the projects and skills of the portfolio owner. The website includes multiple pages with navigation links for easy access.
