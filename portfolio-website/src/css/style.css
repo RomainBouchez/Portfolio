@@ -20,11 +20,12 @@
           z-index: 100;
           background-color: #121212; 
           min-height: 60px;
+          flex-wrap: nowrap;
       }
 
       .logo {
         height: auto;
-        font-size: 5vw;
+        font-size: 2rem;
         font-weight: bold;
         padding-right: 1rem;
         text-transform: uppercase;
@@ -33,33 +34,34 @@
         flex-direction: row;
         font-family: coolvetica;
         align-items: flex-end;
-        flex-shrink: 0; /* Empêche le logo de rétrécir */
+        flex-shrink: 0;
+        white-space: nowrap; /* Empêche le logo de rétrécir */
       }
 
       .nav-links {
         display: flex;
         justify-content: center;
-        flex-grow: 1; /* Permet aux liens de prendre l'espace central */
-        gap: 20px; /* Augmente l'espacement entre les liens */
+        align-items: center;
+        gap: 20px;
+        flex-grow: 0; /* Don't grow */
+        flex-shrink: 0; /* Don't shrink */
     }
       
-      .nav-links a {
-        color: #ffffff;
-        text-decoration: none;
-        font-size: 0.9rem;
-        padding: 10px 20px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 4px;
-        transition: all 0.3s ease;
-        position: relative;
-        overflow: hidden;
-        white-space: nowrap; /* Empêche les liens de sauter à la ligne */
-        min-width: 120px; /* Empêche que les boutons deviennent trop petits */
-        max-width: fit-content; /* Garde les boutons à une taille normale */
-        text-align: center;
-        display: inline-block;
-        
-    }
+    .nav-links a {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 1.1rem;
+      padding: 12px 24px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      white-space: nowrap;
+      min-width: 120px;
+      text-align: center;
+      display: inline-block;
+  }
       
 
     .nav-links a:hover {
@@ -147,26 +149,135 @@
           line-height: 1.4;
         }
 
-/* Amélioration responsive */
-@media (max-width: 768px) {
-  .navbar {
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-  }
+        .about-container {
+          padding: calc(80px + 2rem) 2rem 2rem; /* Ajuste l'espacement sous la navbar */
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+      }
+      
+      .about-content {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          max-width: 1200px;
+          gap: 3rem;
+          flex-wrap: wrap;
+      }
+      
+      .about-text {
+          flex: 1;
+          min-width: 300px;
+          text-align: left;
+      }
+      
+      .about-text h1 {
+          font-size: 3rem;
+          margin-bottom: 1rem;
+          background: linear-gradient(45deg, #fff, #666);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          animation: gradient 8s ease infinite;
+      }
+      
+      .about-text p {
+          font-size: 1.2rem;
+          line-height: 1.6;
+          color: rgba(255, 255, 255, 0.8);
+          margin-bottom: 1rem;
+          transition: color 0.3s ease;
+      }
+      
+      .about-text p:hover {
+          color: #fff;
+      }
+      
+      .about-image {
+          flex: 1;
+          display: flex;
+          justify-content: center;
+      }
+      
+      .about-image img {
+          width: 300px;
+          height: 300px;
+          border-radius: 50%;
+          object-fit: cover;
+          transition: transform 0.4s ease, box-shadow 0.3s ease;
+      }
+      
+      .about-image img:hover {
+          transform: scale(1.1);
+          box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
+      }
 
-  .nav-links {
-      flex-direction: column;
-      width: 100%;
-      align-items: center;
-  }
+        @media (max-width: 1200px) {
+          .logo {
+              font-size: 1.5rem;
+          }
+          
+          .nav-links a {
+              padding: 10px 20px;
+              min-width: 100px;
+              font-size: 1rem;
+          }
+      }
+      
+      footer {
+        text-align: center;
+        padding: 2rem;
+        background-color: rgba(18, 18, 18, 0.95);
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+      }
 
-  .contact-info {
-      text-align: center;
-  }
+      @media (max-width: 992px) {
+          .navbar {
+              flex-direction: column;
+              padding: 1rem;
+              gap: 1rem;
+          }
+      
+          .logo {
+              width: 100%;
+              text-align: center;
+              margin-right: 0;
+          }
+      
+          .nav-links {
+              width: 100%;
+              justify-content: center;
+              flex-wrap: wrap;
+          }
+      
+          .contact-info {
+              width: 100%;
+              text-align: center;
+              margin-left: 0;
+          }
+      }
+      
+      @media (max-width: 480px) {
+          .nav-links {
+              flex-direction: column;
+              align-items: center;
+          }
+      
+          .nav-links a {
+              width: 200px;
+          }
+      }
 
-  .brand-name {
-      font-size: 3rem;
-      text-align: center;
-  }
-}
+      @media (max-width: 768px) {
+        .about-content {
+            flex-direction: column;
+            text-align: center;
+        }
+    
+        .about-text {
+            text-align: center;
+        }
+    }
