@@ -101,6 +101,21 @@ Le projet consiste à concevoir et développer un portfolio en ligne permettant 
 
 ![Nouveau Document texte](https://github.com/user-attachments/assets/0006dcd3-d4ac-4f8d-970c-837377d5e780)
 
+![Nouveau Document texte (3)](https://github.com/user-attachments/assets/45a0fb29-f9ab-4c1e-8636-6cf55b104379)
+
+
+![Nouveau Document texte](https://github.com/user-attachments/assets/6d058f40-4f7a-4a1f-94da-19fc391fe5a2)
+
+![use_case](https://github.com/user-attachments/assets/cbcd2c1c-d777-427b-b8cf-a0648b923275)
+
+## WireFrame
+
+![WIREFRAME](https://github.com/user-attachments/assets/0e49002a-0225-4a9b-be3c-0ac778195368)
+
+## Maquettage
+
+![Maquetage](https://github.com/user-attachments/assets/ee1b02f4-d891-4d95-a855-2253afe53421)
+
 
 ## Project Structure
 
@@ -109,7 +124,6 @@ Le projet consiste à concevoir et développer un portfolio en ligne permettant 
 - `src/contact.html`: Contact form or contact information for visitors.
 - `src/projects.html`: Showcase of completed projects with descriptions and links.
 - `src/css/style.css`: Styles for the website, defining layout, colors, and fonts.
-- `src/js/script.js`: JavaScript functionality for interactive elements and form validation.
 
 ## Features
 
@@ -121,7 +135,7 @@ Le projet consiste à concevoir et développer un portfolio en ligne permettant 
 
 1. Clone the repository:
    ```
-   git clone <repository-url>
+   git clone https://github.com/RomainBouchez/Portfolio
    ```
 2. Navigate to the project directory:
    ```
