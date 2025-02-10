@@ -1,0 +1,210 @@
+/* Effet hover : agrandir l'image légèrement */
+:root {
+    --primary-color: #272727;
+    --secondary-color: #404850;
+    --accent-color: #00a8ff;
+    --fire-gradient: linear-gradient(135deg, #ff6b00, #ff0000);
+}
+
+body {
+    background-color: var(--primary-color);
+    color: white; /* Pour assurer que le texte est lisible sur fond sombre */
+}
+
+.navbar {
+    background-color: var(--primary-color) !important;
+}
+
+.navbar-brand, .nav-link {
+    color: white !important;
+}
+
+.hero-carousel .carousel-item {
+    height: 400px;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5));
+}
+
+.carousel-discount-badge {
+    background-color: #ff6b00;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.game-card {
+    background-color: var(--secondary-color);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.game-card:hover {
+    transform: translateY(-5px);
+}
+
+.price-tag {
+    background-color: var(--fire-gradient);
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.discount-badge {
+    background-color: #28a745;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.category-card {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    height: 150px;
+}
+
+.category-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.category-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.7));
+    display: flex;
+    align-items: flex-end;
+    padding: 1rem;
+}
+
+
+.gaming-navbar {
+    background-color: #272727;
+    padding: 1rem 0;
+}
+
+.navbar-brand img {
+    height: 40px;
+}
+
+.search-box {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+}
+
+.search-box input {
+    background-color: #2d2d2d;
+    border: none;
+    color: white;
+    padding-right: 40px;
+    border-radius: 20px;
+}
+
+
+.search-box input:focus {
+    background-color: #2d2d2d;
+    color: white;
+    box-shadow: none;
+    border: 1px solid var(--fire-gradient);
+}
+
+.search-box input::placeholder {
+    color: #999;
+}
+
+
+
+.search-box .search-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+}
+
+.nav-link {
+    color: white !important;
+    padding: 0.5rem 1rem !important;
+    transition: background 0.5s ease, -webkit-background-clip 0.5s ease, color 0.5s ease;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.nav-link:hover {
+    background :var(--fire-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.cart-icon {
+    position: relative;
+    padding: 0.5rem;
+    color: white;
+    text-decoration: none;
+}
+
+.cart-badge {
+    position: absolute;
+    top : -5px;
+    background: var(--fire-gradient);
+    color: white;
+    border-radius: 50%;
+    padding: 0.2rem 0.5rem;
+    font-size: 0.75rem;
+}
+
+
+.trending-section {
+    padding: 2rem 0;
+}
+
+.game-card {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    background: transparent;
+    transition: transform 0.3s ease;
+    text-decoration: none;
+    color: white;
+}
+
+.game-card:hover {
+    transform: translateY(-5px);
+}
+
+.game-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.discount-badge {
+    position: absolute;
+    top: 10px;
+    background-color: #ff6b00;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+}
+
+.game-title {
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    color: white;
+    text-decoration: none;
+}
+
+.game-price {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: white;
+}
+
+@media (max-width: 992px) {
+    .search-box {
+        margin: 1rem 0;
+    }
+}
