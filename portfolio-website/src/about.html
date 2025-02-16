@@ -1,19 +1,33 @@
+<!-- about.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About - Romain Bouchez</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/about.css">
 </head>
 <body>
     <nav class="navbar">
-        <h2 class="logo">PORTFOLIO ROMAIN BOUCHEZ</h2>
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="projects.html">Project</a>
-            <a href="about.html">About</a>
-            <a href="contact.html">Contact</a>
+        <div class="navbar-container">
+            <h2 class="logo">PORTFOLIO ROMAIN BOUCHEZ</h2>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="projects.html">Project</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <button class="hamburger" aria-label="menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="contact-info">
+                <div>bouchez@et.esiea.fr</div>
+                <div>06 49 17 63 12</div>
+            </div>
         </div>
     </nav>
 
@@ -29,7 +43,7 @@
                 <p>Mon objectif ? Devenir un expert en cybersécurité et participer activement à la protection des infrastructures numériques.</p>
             </div>
             <div class="about-image">
-                <img src="https://placehold.co/300x300">
+                <img src="https://placehold.co/300x300" alt="Romain Bouchez">
             </div>
         </section>
     </main>
@@ -37,5 +51,7 @@
     <footer>
         <p>&copy; 2024 Romain Bouchez</p>
     </footer>
+
+    <script src="js/script.js"></script>
 </body>
 </html>
