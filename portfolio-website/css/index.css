@@ -64,10 +64,11 @@
     .brand-name {
         font-size: 40vw;
         text-align: center;
+        bottom: 10vh;
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 510px) {
     .navbar {
         padding: 1rem;
         padding-left: 0.5rem;
@@ -75,12 +76,19 @@
     }
     
     .logo {
-        font-size: 2.7rem;
+        font-size: 3em;
         display: flex;
         justify-content: center;
+        padding: 1rem;
     }
 
     .brand-name {
         font-size: 40vw;
+    }
+}
+
+@media (max-width: 380px) {
+    .logo {
+        font-size: 2.5rem;
     }
 }
