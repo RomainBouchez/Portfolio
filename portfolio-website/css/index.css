@@ -19,7 +19,7 @@
 /* Responsive styles */
 @media (max-width: 968px) {
     .logo {
-        font-size: 1.4rem;
+        font-size: 4rem;
     }
     
     .contact-info {
@@ -27,7 +27,7 @@
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 873px) {
     .navbar-container {
         justify-content: flex-start;
     }
@@ -54,10 +54,15 @@
 
     .nav-links a {
         width: 200px;
+        height: 50px;
+        font-size: 1.4rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .brand-name {
-        font-size: 24vw;
+        font-size: 40vw;
         text-align: center;
     }
 }
@@ -65,13 +70,17 @@
 @media (max-width: 480px) {
     .navbar {
         padding: 1rem;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
     }
     
     .logo {
-        font-size: 1.2rem;
+        font-size: 2.7rem;
+        display: flex;
+        justify-content: center;
     }
 
     .brand-name {
-        font-size: 20vw;
+        font-size: 40vw;
     }
 }

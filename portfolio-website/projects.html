@@ -32,23 +32,312 @@
 
 <main class="main-content">
     <div class="portfolio-grid">
+        <!-- Project 1 Modal -->
         <div id="project1-modal" class="modal">
             <span class="close">&times;</span>
             <div class="modal-content">
-                <span class="close">&times;</span>
-                <h2>Chat type Discord</h2>
-                <p>Detailed information about the project, including technologies used, challenges faced, and solutions implemented.</p>
-                <p>Additional details and insights into the development process.</p>
+                <div class="modal-header">
+                    <img src="img/projet_1_acceuil_1400x400.png" alt="Discord-like Chat Application" class="header-image">
+                    <div class="project-title-container">
+                        <h1 class="project-title">Discord-like Chat Application</h1>
+                        <div class="tech-badges">
+                            <span class="badge">Java</span>
+                            <span class="badge">Spring Boot</span>
+                            <span class="badge">Maven</span>
+                            <span class="badge">WebSockets</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal-content-info">
+                    <div class="project-overview">
+                        <p class="lead-text">A real-time chat application inspired by Discord, developed using Java, Spring Boot, and Maven. The application enables users to chat in public and private channels and manage their accounts.</p>
+                        
+                        <div class="demo-images">
+                            <img src="img/projet_1_acceuil.png" alt="Login Screen" class="demo-image" width="600" height="400">
+                            <img src="img/projet_1_chat1.png" alt="Chat Interface" class="demo-image" width="600" height="400">
+                            <img src="img/projet_1_chat2.png" alt="Private Message" class="demo-image" width="600" height="400">
+                        </div>
+                    </div>
+                    
+                    <div class="project-section">
+                        <h3><i class="fas fa-star"></i> Key Features</h3>
+                        <div class="features-grid">
+                            <div class="feature">
+                                <i class="fas fa-comments feature-icon"></i>
+                                <h4>Real-time Chat</h4>
+                                <p>Communicate instantly in public servers with multiple users</p>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-user-friends feature-icon"></i>
+                                <h4>Private Messaging</h4>
+                                <p>Send direct messages to connected users</p>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-key feature-icon"></i>
+                                <h4>Password Reset</h4>
+                                <p>Secure account recovery through email verification</p>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-signal feature-icon"></i>
+                                <h4>Online Status</h4>
+                                <p>Track which members are currently active</p>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <div class="project-section">
+                        <h3><i class="fas fa-code"></i> Technologies Used</h3>
+                        <div class="tech-stack">
+                            <div class="tech-category">
+                                <h4>Backend</h4>
+                                <ul>
+                                    <li><span class="tech-icon"><i class="fab fa-java"></i></span> Java</li>
+                                    <li><span class="tech-icon"><i class="fas fa-leaf"></i></span> Spring Boot</li>
+                                    <li><span class="tech-icon"><i class="fas fa-project-diagram"></i></span> Maven</li>
+                                </ul>
+                            </div>
+                            <div class="tech-category">
+                                <h4>Frontend</h4>
+                                <ul>
+                                    <li><span class="tech-icon"><i class="fab fa-html5"></i></span> HTML5</li>
+                                    <li><span class="tech-icon"><i class="fab fa-css3-alt"></i></span> CSS3</li>
+                                    <li><span class="tech-icon"><i class="fab fa-js"></i></span> JavaScript</li>
+                                </ul>
+                            </div>
+                            <div class="tech-category">
+                                <h4>Real-time Communication</h4>
+                                <ul>
+                                    <li><span class="tech-icon"><i class="fas fa-exchange-alt"></i></span> SockJS</li>
+                                    <li><span class="tech-icon"><i class="fas fa-network-wired"></i></span> STOMP</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <div class="project-section">
+                        <h3><i class="fas fa-terminal"></i> Installation Guide</h3>
+                        <div class="installation-steps">
+                            <ol>
+                                <li>
+                                    <h4>Clone the repository</h4>
+                                    <div class="code-snippet">
+                                        <code>git clone https://github.com/N3tup/Challenge-technique-JAVA-2024.git</code>
+                                        <button class="copy-btn" aria-label="Copy code"><i class="fas fa-copy"></i></button>
+                                    </div>
+                                </li>
+                                <li>
+                                    <h4>Navigate to project directory</h4>
+                                    <div class="code-snippet">
+                                        <code>cd Challenge_Technique_Drach_Bouchez</code>
+                                        <button class="copy-btn" aria-label="Copy code"><i class="fas fa-copy"></i></button>
+                                    </div>
+                                </li>
+                                <li>
+                                    <h4>Compile with Maven</h4>
+                                    <div class="code-snippet">
+                                        <code>mvn clean install</code>
+                                        <button class="copy-btn" aria-label="Copy code"><i class="fas fa-copy"></i></button>
+                                    </div>
+                                </li>
+                                <li>
+                                    <h4>Start the application</h4>
+                                    <div class="code-snippet">
+                                        <code>mvn spring-boot:run</code>
+                                        <button class="copy-btn" aria-label="Copy code"><i class="fas fa-copy"></i></button>
+                                    </div>
+                                </li>
+                                <li>
+                                    <h4>Access the application</h4>
+                                    <div class="code-snippet">
+                                        <code>http://localhost:8080</code>
+                                        <button class="copy-btn" aria-label="Copy code"><i class="fas fa-copy"></i></button>
+                                    </div>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+            
+                    <div class="project-section">
+                        <h3><i class="fas fa-laptop-code"></i> Project Requirements</h3>
+                        <div class="requirements-container">
+                            <div class="requirement">
+                                <i class="fab fa-java requirement-icon"></i>
+                                <span>Java 11 or higher</span>
+                            </div>
+                            <div class="requirement">
+                                <i class="fas fa-project-diagram requirement-icon"></i>
+                                <span>Maven 3.6 or higher</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="project-footer">
+                        <a href="https://github.com/N3tup/Challenge-technique-JAVA-2024" class="github-btn">
+                            <i class="fab fa-github"></i> View on GitHub
+                        </a>
+                        <div class="author-info">
+                            <p>Développé  par  Romain Bouchez</p>
+                            <p><i class="fas fa-envelope"></i> bouchez@et.esiea.fr</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="portfolio-item">
-            <img src="https://placehold.co/600x400" alt="Project 1">
+
+        <!-- Project 2 Modal -->
+        <div id="project2-modal" class="modal">
+            <span class="close">&times;</span>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <img src="https://placehold.co/1200x400" alt="Project 2" class="header-image">
+                    <div class="project-title-container">
+                        <h1 class="project-title">Project Title 2</h1>
+                        <div class="tech-badges">
+                            <span class="badge">Technology 1</span>
+                            <span class="badge">Technology 2</span>
+                            <span class="badge">Technology 3</span>
+                            <span class="badge">Technology 4</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal-content-info">
+                    <div class="project-overview">
+                        <p class="lead-text">Project description goes here. This is a brief overview of the project and its main features.</p>
+                        
+                        <div class="demo-images">
+                            <img src="https://placehold.co/600x400" alt="Project 2 Demo" class="demo-image">
+                            <img src="https://placehold.co/600x400" alt="Project 2 Demo" class="demo-image">
+                            <img src="https://placehold.co/600x400" alt="Project 2 Demo" class="demo-image">
+                        </div>
+                    </div>
+                    
+                    <div class="project-section">
+                        <h3><i class="fas fa-star"></i> Key Features</h3>
+                        <div class="features-grid">
+                            <div class="feature">
+                                <i class="fas fa-comments feature-icon"></i>
+                                <h4>Feature 1</h4>
+                                <p>Feature 1 description goes here</p>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-user-friends feature-icon"></i>
+                                <h4>Feature 2</h4>
+                                <p>Feature 2 description goes here</p>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-key feature-icon"></i>
+                                <h4>Feature 3</h4>
+                                <p>Feature 3 description goes here</p>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-signal feature-icon"></i>
+                                <h4>Feature 4</h4>
+                                <p>Feature 4 description goes here</p>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <div class="project-section">
+                        <h3><i class="fas fa-code"></i> Technologies Used</h3>
+                        <div class="tech-stack">
+                            <div class="tech-category">
+                                <h4>Backend</h4>
+                                <ul>
+                                    <li><span class="tech-icon"><i class="fab fa-java"></i></span> Technology 1</li>
+                                    <li><span class="tech-icon"><i class="fas fa-leaf"></i></span> Technology 2</li>
+                                    <li><span class="tech-icon"><i class="fas fa-project-diagram"></i></span> Technology 3</li>
+                                </ul>
+                            </div>
+                            <div class="tech-category">
+                                <h4>Frontend</h4>
+                                <ul>
+                                    <li><span class="tech-icon"><i class="fab fa-html5"></i></span> Technology 4</li>
+                                    <li><span class="tech-icon"><i class="fab fa-css3-alt"></i></span> Technology 5</li>
+                                    <li><span class="tech-icon"><i class="fab fa-js"></i></span> Technology 6</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <div class="project-section">
+                        <h3><i class="fas fa-terminal"></i> Installation Guide</h3>
+                        <div class="installation-steps">
+                            <ol>
+                                <li>
+                                    <h4>Clone the repository</h4>
+                                    <div class="code-snippet">
+                                        <code>git clone https://github.com/username/project2.git</code>
+                                        <button class="copy-btn" aria-label="Copy code"><i class="fas fa-copy"></i></button>
+                                    </div>
+                                </li>
+                                <li>
+                                    <h4>Navigate to project directory</h4>
+                                    <div class="code-snippet">
+                                        <code>cd project2</code>
+                                        <button class="copy-btn" aria-label="Copy code"><i class="fas fa-copy"></i></button>
+                                    </div>
+                                </li>
+                                <li>
+                                    <h4>Install dependencies</h4>
+                                    <div class="code-snippet">
+                                        <code>npm install</code>
+                                        <button class="copy-btn" aria-label="Copy code"><i class="fas fa-copy"></i></button>
+                                    </div>
+                                </li>
+                                <li>
+                                    <h4>Start the application</h4>
+                                    <div class="code-snippet">
+                                        <code>npm start</code>
+                                        <button class="copy-btn" aria-label="Copy code"><i class="fas fa-copy"></i></button>
+                                    </div>
+                                </li>
+                                <li>
+                                    <h4>Access the application</h4>
+                                    <div class="code-snippet">
+                                        <code>http://localhost:3000</code>
+                                        <button class="copy-btn" aria-label="Copy code"><i class="fas fa-copy"></i></button>
+                                    </div>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+            
+                    <div class="project-section">
+                        <h3><i class="fas fa-laptop-code"></i> Project Requirements</h3>
+                        <div class="requirements-container">
+                            <div class="requirement">
+                                <i class="fab fa-node-js requirement-icon"></i>
+                                <span>Node.js 14 or higher</span>
+                            </div>
+                            <div class="requirement">
+                                <i class="fas fa-project-diagram requirement-icon"></i>
+                                <span>NPM 6 or higher</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="project-footer">
+                        <a href="https://github.com/username/project2" class="github-btn">
+                            <i class="fab fa-github"></i> View on GitHub
+                        </a>
+                        <div class="author-info">
+                            <p>Developed by Your Name</p>
+                            <p><i class="fas fa-envelope"></i> your.email@example.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="portfolio-item" data-modal="project1-modal">
+            <img src="img/projet_1_acceuil.png" alt="Discord-like Chat Application">
             <div class="portfolio-item-info">
-                <h2>Project Title 1</h2>
-                <p>An innovative project demonstrating the use of modern web technologies.</p>
+                <h2>Discord-like Chat Application</h2>
+                <p>A real-time chat application built with Java Spring Boot, featuring public and private messaging channels.</p>
             </div>
         </div>
-        <div class="portfolio-item">
+        <div class="portfolio-item" data-modal="project2-modal">
             <img src="https://placehold.co/600x400" alt="Project 2">
             <div class="portfolio-item-info">
                 <h2>Project Title 2</h2>

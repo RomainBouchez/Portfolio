@@ -73,6 +73,77 @@
     pointer-events: none;
 }
 
+.modal-header {
+    position: relative;
+    height: 400px;
+    overflow: hidden;
+}
+
+.header-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.7);
+}
+
+.project-title-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 2rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+    color: white;
+}
+
+.project-title {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.tech-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.badge {
+    padding: 0.3rem 1rem;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50px;
+    font-size: 0.9rem;
+    backdrop-filter: blur(4px);
+}
+
+.lead-text {
+    font-size: 1.4rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    color: rgba(255,255,255,0.9);
+    border-left: 4px solid #5865F2;
+    padding-left: 1rem;
+}
+
+.demo-images {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.demo-image {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.demo-image:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+}
+
 .modal.active {
     pointer-events: auto;
 }
@@ -90,8 +161,8 @@
 
 /* Updated expanded state styles */
 .modal-content.expanded {
-    width: 80vw; /* Changed to 80% of viewport width */
-    height: 80vh; /* Changed to 80% of viewport height */
+    width: 70vw;; 
+    height: 80vh; 
     max-width: none; /* Removed max-width constraint */
     min-width: min(320px, 90vw); /* Ensures minimum size on small screens */
     top: 50% !important;
@@ -103,8 +174,9 @@
 /* Updated content layout for expanded state */
 .modal-content.expanded img {
     width: 100%;
-    height: 40vh; /* Reduced to give more space for content */
+    
     object-fit: cover;
+    height: 100%;
 }
 
 .modal-content-info {
@@ -130,12 +202,18 @@
 }
 
 .modal-content-info p {
-    font-size: min(2vw, 1.1rem); /* Responsive font size with maximum */
+    font-size: min(2vw, 1.4rem); /* Responsive font size with maximum */
     line-height: 1.6;
     margin-bottom: 1em;
     color: rgba(255, 255, 255, 0.9);
 }
 
+.modal-content img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
 
 .modal-backdrop {
     position: fixed;
@@ -195,6 +273,418 @@
         font-size: 1rem;
     }
 }
+
+.project-section {
+    margin: 3rem 0;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.05);
+    padding: 2rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+.project-section h3 {
+    display: flex;
+    align-items: center;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: #fff;
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.project-section h3 i {
+    margin-right: 0.8rem;
+    color: #5865F2;
+}
+
+.project-section h4 {
+    color: #fff;
+    font-size: min(2.5vw, 1.4rem);
+    margin: 1.5rem 0 1rem;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.feature {
+    background: rgba(0,0,0,0.2);
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.feature:hover {
+    transform: translateY(-5px);
+    background: rgba(88,101,242,0.15);
+}
+
+.feature-icon {
+    font-size: 2.5rem;
+    color: #5865F2;
+    margin-bottom: 1rem;
+}
+
+.feature h4 {
+    font-size: 1.6rem;
+    margin-bottom: 0.8rem;
+    color: white;
+}
+
+.tech-stack {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.tech-category {
+    background: rgba(0,0,0,0.2);
+    border-radius: 8px;
+    padding: 1.5rem;
+}
+
+.tech-category h4 {
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 0.8rem;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    color: #5865F2;
+}
+
+.tech-category ul {
+    list-style: none;
+    margin-left: 0;
+}
+
+.tech-category li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.tech-icon {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    background: rgba(88,101,242,0.2);
+    border-radius: 50%;
+    margin-right: 1rem;
+}
+
+.installation-steps ol {
+    counter-reset: step-counter;
+    margin-left: 0;
+}
+
+.installation-steps li {
+    position: relative;
+    margin-bottom: 2rem;
+    padding-left: 3rem;
+    list-style: none;
+}
+
+.installation-steps li::before {
+    content: counter(step-counter);
+    counter-increment: step-counter;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 2rem;
+    height: 2rem;
+    background: #5865F2;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+}
+
+.code-snippet {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(0,0,0,0.3);
+    border-radius: 6px;
+    padding: 0.8rem 1rem;
+    margin-top: 0.5rem;
+    position: relative; /* Add position relative */
+}
+
+
+.code-snippet code {
+    font-family: 'JetBrains Mono', monospace;
+    width: calc(100% - 35px); /* Give space for copy button */
+    padding: 0;
+    background: transparent;
+    overflow-x: auto; /* Allow horizontal scrolling for long code */
+    white-space: nowrap; /* Keep code on single line */
+}
+
+.copy-btn {
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.5);
+    cursor: pointer;
+    transition: color 0.3s ease;
+    position: absolute; /* Position absolutely */
+    right: 25px;
+    top: 50%; /* Center vertically */
+    transform: translateY(-50%); /* Perfect vertical centering */
+    z-index: 5; /* Ensure button stays above code */
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+}
+
+.copy-btn:hover {
+    color: #5865F2;
+    background-color: rgba(255,255,255,0.1);
+}
+
+.requirements-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.requirement {
+    display: flex;
+    align-items: center;
+    background: rgba(0,0,0,0.2);
+    border-radius: 8px;
+    padding: 1rem 1.5rem;
+}
+
+.requirement-icon {
+    font-size: 1.5rem;
+    color: #5865F2;
+    margin-right: 1rem;
+}
+
+.project-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.github-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #5865F2;
+    color: white;
+    text-decoration: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+}
+
+.github-btn:hover {
+    background: #4752c4;
+}
+
+.author-info {
+    text-align: right;
+    color: rgba(255,255,255,0.7);
+}
+
+.author-info p {
+    margin-bottom: 0.3rem;
+}
+
+.project-section ul,
+.project-section ol {
+    margin-left: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.project-section li {
+    margin-bottom: 0.8rem;
+    line-height: 1.6;
+}
+
+.project-section p {
+    margin-bottom: 1.5rem;
+}
+
+.project-section code {
+    display: inline-block;
+    margin: 0.5rem 0;
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    font-family: monospace;
+    width: 100%;
+    font-size: 1.15rem;
+}
+
+.project-section pre {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 1rem;
+    border-radius: 8px;
+    margin: 1rem 0;
+    overflow-x: auto;
+}
+
+.project-section pre code {
+    background: none;
+    padding: 0;
+    color: #fff;
+}
+
+.project-section a {
+    color: #fff;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    transition: border-color 0.3s ease;
+}
+
+.project-section a:hover {
+    border-color: rgba(255, 255, 255, 0.8);
+}
+
+/* Add animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.modal-content.expanded {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Improve mobile display */
+@media (max-width: 768px) {
+    .project-title {
+        font-size: 2rem;
+    }
+    
+    .lead-text {
+        font-size: 1.1rem;
+    }
+    
+    .project-section {
+        padding: 1.5rem;
+        margin: 2rem 0; /* Smaller margins on mobile */
+    }
+    
+    .project-footer {
+        flex-direction: column;
+        gap: 1.5rem;
+        align-items: flex-start; /* Left align on mobile */
+    }
+    
+    .author-info {
+        text-align: left; /* Left align on mobile */
+        margin-top: 1rem;
+    }
+    
+    .features-grid,
+    .tech-stack {
+        grid-template-columns: 1fr;
+    }
+    
+    .modal-header {
+        height: 200px; /* Smaller header on mobile */
+    }
+
+    .project-title-container {
+        padding: 1rem; /* Less padding on mobile */
+    }
+
+    .modal-content-info {
+        padding: 1rem; /* Less padding on mobile */
+    }
+
+    .code-snippet {
+        padding: 0.6rem; /* Smaller padding on mobile */
+    }
+
+    .code-snippet code {
+        font-size: 0.9rem; /* Smaller font on mobile */
+    }
+    
+    .installation-steps li {
+        padding-left: 2.5rem; /* Less padding on mobile */
+    }
+    
+    .requirement {
+        width: 100%; /* Full width on mobile */
+    }
+
+    .copy-btn {
+        right: 10px; /* Adjust position for mobile */
+        width: 25px; /* Smaller button on mobile */
+    }
+    
+
+    /* Fix modal display on mobile */
+    .modal-content.expanded {
+        width: 95vw;
+        height: 85vh;
+        border-radius: 8px; /* Smaller radius on mobile */
+    }
+    
+    .badge {
+        padding: 0.2rem 0.7rem; /* Smaller badges on mobile */
+        font-size: 0.8rem;
+    }
+
+    .tech-badges {
+        gap: 0.3rem; /* Less gap on mobile */
+    }
+}
+
+/* Fix for very small screens */
+@media (max-width: 480px) {
+    .project-title {
+        font-size: 1.5rem; /* Even smaller title on very small screens */
+    }
+    
+    .project-section h3 {
+        font-size: 1.4rem; /* Smaller section headers */
+    }
+    
+    .project-section h4 {
+        font-size: 1.1rem; /* Smaller subsection headers */
+    }
+    
+    .modal-header {
+        height: 150px; /* Even smaller header */
+    }
+    
+    .github-btn {
+        width: 100%; /* Full width button on small screens */
+        justify-content: center;
+    }
+    
+    .close {
+        right: 15px; /* Adjust close button position */
+        top: 15px;
+        font-size: 24px; /* Smaller close button */
+    }
+    
+    .code-snippet code {
+        font-size: 0.8rem; /* Even smaller code font */
+    }
+    
+    .feature-icon {
+        font-size: 2rem; /* Smaller feature icons */
+    }
+}
+
 
 /* Footer styles */
 footer {

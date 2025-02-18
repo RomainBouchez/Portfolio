@@ -69,6 +69,8 @@
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+    max-width: 175px;
+    justify-content: center;
 }
 
 .social-link:hover {
@@ -170,6 +172,12 @@
     
     .contact-header h1 {
         font-size: 3rem;
+    }
+
+    .social-links {
+        flex-direction: row;
+        justify-content: center;
+        gap: 1rem;
     }
 }
 

@@ -21,20 +21,30 @@ document.addEventListener('DOMContentLoaded', function() {
 // project modal open
 document.addEventListener('DOMContentLoaded', () => {
     const portfolioItems = document.querySelectorAll('.portfolio-item');
-    const modal = document.getElementById('project1-modal');
-    const modalContent = modal.querySelector('.modal-content');
-    const closeBtn = modal.querySelector('.close');
+    const modals = document.querySelectorAll('.modal');
     let currentItem = null;
-
-    // Add backdrop div to modal
-    const backdrop = document.createElement('div');
-    backdrop.className = 'modal-backdrop';
-    modal.insertBefore(backdrop, modal.firstChild);
+    let currentModal = null;
 
     portfolioItems.forEach(item => {
         item.addEventListener('click', function(e) {
             e.preventDefault();
             currentItem = this;
+            const modalId = this.getAttribute('data-modal');
+            currentModal = document.getElementById(modalId);
+            
+            if (!currentModal) return;
+            
+            const modalContent = currentModal.querySelector('.modal-content');
+            const closeBtn = currentModal.querySelector('.close');
+            
+            // Create backdrop if it doesn't exist
+            let backdrop = currentModal.querySelector('.modal-backdrop');
+            if (!backdrop) {
+                backdrop = document.createElement('div');
+                backdrop.className = 'modal-backdrop';
+                currentModal.insertBefore(backdrop, currentModal.firstChild);
+            }
+            
             const rect = this.getBoundingClientRect();
 
             // Set initial position
@@ -43,12 +53,12 @@ document.addEventListener('DOMContentLoaded', () => {
             modalContent.style.left = `${rect.left}px`;
             modalContent.style.width = `${rect.width}px`;
             modalContent.style.height = `${rect.height}px`;
-            modal.style.display = 'block';
+            currentModal.style.display = 'block';
 
             // Start expansion animation
             requestAnimationFrame(() => {
                 backdrop.classList.add('active');
-                modal.classList.add('active');
+                currentModal.classList.add('active');
                 modalContent.classList.add('expanded');
                 closeBtn.classList.add('active');
                 
@@ -56,21 +66,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 modalContent.style.width = '';
                 modalContent.style.height = '';
             });
-
-            // Update content
-            modalContent.innerHTML = `
-                ${this.innerHTML}
-                <div class="modal-content-info">
-                    <h2>Chat type Discord</h2>
-                    <p>Detailed information about the project, including technologies used, challenges faced, and solutions implemented.</p>
-                    <p>Additional details and insights into the development process.</p>
-                </div>
-            `;
         });
     });
 
     function closeModal() {
-        if (!currentItem) return;
+        if (!currentItem || !currentModal) return;
+        
+        const modalContent = currentModal.querySelector('.modal-content');
+        const closeBtn = currentModal.querySelector('.close');
+        const backdrop = currentModal.querySelector('.modal-backdrop');
+        
+        if (!modalContent || !closeBtn || !backdrop) return;
+        
         const rect = currentItem.getBoundingClientRect();
 
         // Set explicit dimensions for closing animation
@@ -81,19 +88,42 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Remove active classes
         backdrop.classList.remove('active');
-        modal.classList.remove('active');
+        currentModal.classList.remove('active');
         modalContent.classList.remove('expanded');
         closeBtn.classList.remove('active');
 
         setTimeout(() => {
-            modal.style.display = 'none';
+            currentModal.style.display = 'none';
             currentItem = null;
+            currentModal = null;
             // Clear inline styles
             modalContent.style.width = '';
             modalContent.style.height = '';
         }, 500);
     }
 
-    closeBtn.addEventListener('click', closeModal);
-    backdrop.addEventListener('click', closeModal);
+    // Add close event listeners to all modals
+    modals.forEach(modal => {
+        const closeBtn = modal.querySelector('.close');
+        const backdrop = modal.querySelector('.modal-backdrop');
+        
+        if (closeBtn) {
+            closeBtn.addEventListener('click', closeModal);
+        }
+        
+        // Add click listener to the modal itself (outside of content)
+        modal.addEventListener('click', function(e) {
+            // Check if the click is on the modal but not on the modal content
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+    });
+
+    // Add escape key listener
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && currentModal) {
+            closeModal();
+        }
+    });
 });
