@@ -241,3 +241,82 @@ hr {
         padding: 1.5rem;
     }
 }
+
+/* Message styles for main-content placement */
+.message {
+    margin: 0 auto 2rem auto;
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    max-width: 800px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    font-weight: 500;
+    border-left: 5px solid;
+    animation: fadeInDown 0.5s ease forwards;
+    position: relative;
+}
+
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.success-message {
+    background: rgba(40, 167, 69, 0.9);
+    border-left-color: #1d8036;
+    color: white;
+    backdrop-filter: blur(10px);
+}
+
+.error-message {
+    background: rgba(220, 53, 69, 0.9);
+    border-left-color: #a71d2a;
+    color: white;
+    backdrop-filter: blur(10px);
+}
+
+.success-icon, .error-icon {
+    margin-right: 1.2rem;
+    font-size: 1.3rem;
+}
+
+/* Optional: Close button for messages */
+.message-close {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    color: rgba(255, 255, 255, 0.7);
+    background: none;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0.3rem;
+    line-height: 1;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.message-close:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .message {
+        margin: 0 1rem 1.5rem 1rem;
+        padding: 0.8rem 1.2rem;
+    }
+}

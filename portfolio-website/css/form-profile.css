@@ -1,0 +1,336 @@
+/* Main Layout and Container Improvements */
+.registration-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Panel Improvements */
+.panel {
+    background: rgba(26, 26, 26, 0.5);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.panel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(to right, #007AFF, #5AC8FA);
+    opacity: 0.8;
+}
+
+.panel:hover::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 4px;
+    background: linear-gradient(to right, #5AC8FA, #007AFF);
+    opacity: 0.8;
+    animation: borderExpand 0.5s forwards;
+}
+
+@keyframes borderExpand {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 100%;
+    }
+}
+
+.panel-body {
+    padding: 2.5rem;
+}
+
+.panel-body h2 {
+    font-size: 2.2rem;
+    color: #fff;
+    margin-bottom: 1.8rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 1rem;
+    background: linear-gradient(to right, #007AFF, #5AC8FA);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.5px;
+}
+
+.panel-body h3 {
+    font-size: 1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+.panel-footer {
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 1.2rem 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    text-align: right;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Form Elements Improvements */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.8rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.form-control {
+    width: 100%;
+    padding: 1rem 1.2rem;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    color: #fff;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: rgba(0, 122, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.2);
+}
+
+.radio-inline {
+    display: inline-block;
+    margin-right: 1.5rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+input[type="radio"], input[type="checkbox"] {
+    margin-right: 0.5rem;
+    accent-color: #007AFF;
+}
+
+/* Button Improvements */
+.btn {
+    padding: 0.9rem 1.8rem;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    line-height: 1.5;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Using the .nav-links a hover effect */
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transition: left 0.4s ease-in-out;
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.btn i {
+    margin-right: 1.2rem;
+    font-size: 1.1rem;
+}
+
+.btn-primary {
+    background: linear-gradient(to right, #007AFF, #5AC8FA);
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(to right, #0062CC, #4BA8F5);
+}
+
+.btn-danger {
+    background: linear-gradient(to right, #FF3B30, #FF9500);
+    color: #fff;
+    margin-top: 0.5rem;
+}
+
+.btn-danger:hover {
+    background: linear-gradient(to right, #E0352B, #E68600);
+}
+
+/* Link Styling */
+.form-group p {
+    margin-top: 1.5rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.95rem;
+}
+
+.form-group p a {
+    color: #007AFF;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.form-group p a:hover {
+    color: #5AC8FA;
+}
+
+.form-group p a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: linear-gradient(to right, #007AFF, #5AC8FA);
+    transition: width 0.3s ease;
+}
+
+.form-group p a:hover::after {
+    width: 100%;
+}
+
+/* Alert Messages */
+.message {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    z-index: 1000;
+    max-width: 400px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    font-weight: 500;
+    border-left: 5px solid;
+    animation: messageAnimation 5s forwards;
+}
+
+@keyframes messageAnimation {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    10% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    90% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
+.success-message {
+    background: rgba(40, 167, 69, 0.9);
+    border-left-color: #1d8036;
+    color: white;
+    backdrop-filter: blur(10px);
+}
+
+.error-message {
+    background: rgba(220, 53, 69, 0.9);
+    border-left-color: #a71d2a;
+    color: white;
+    backdrop-filter: blur(10px);
+}
+
+.success-icon, .error-icon {
+    margin-right: 1.2rem;
+    font-size: 1.3rem;
+}
+
+/* Separator */
+hr {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 2rem 0;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .registration-container {
+        padding: 1.5rem;
+    }
+    
+    .panel-body {
+        padding: 1.8rem;
+    }
+    
+    .panel-body h2 {
+        font-size: 1.8rem;
+    }
+    
+    .message {
+        left: 15px;
+        right: 15px;
+        width: auto;
+    }
+    
+    .btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .registration-container {
+        padding: 1rem;
+    }
+    
+    .panel-body {
+        padding: 1.2rem;
+    }
+    
+    .panel-body h2 {
+        font-size: 1.5rem;
+    }
+}
+
+/* Custom scrollbar for better UX */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 122, 255, 0.5);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 122, 255, 0.7);
+}

@@ -35,7 +35,10 @@ $userInfo = $stmt->fetch(PDO::FETCH_ASSOC);
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/project.css">
     <link rel="stylesheet" href="../css/registration-styles.css">
+    <link rel="stylesheet" href="../css/form-profile.css">
 </head>
+
+
 <body>
     <div class="navbar">
         <div class="navbar-container">
@@ -54,20 +57,21 @@ $userInfo = $stmt->fetch(PDO::FETCH_ASSOC);
     </div>
 
     <div class="main-content">
+        <?php
+            // Affichage des messages
+            if (isset($_GET['success'])) {
+                echo '<div class="message success-message"><i class="fas fa-check-circle success-icon"></i><span>' . htmlspecialchars($_GET['success']) . '</span></div>';
+            }
+            if (isset($_GET['error'])) {
+                echo '<div class="message error-message"><i class="fas fa-exclamation-circle error-icon"></i><span>' . htmlspecialchars($_GET['error']) . '</span></div>';
+            }
+        ?>
         <div class="registration-container">
             <div class="panel panel-primary">
                 <div class="panel-body">
                     <h2>Mon Profil</h2>
                     
-                    <?php
-                    // Affichage des messages
-                    if (isset($_GET['success'])) {
-                        echo '<div class="success-message show"><i class="fas fa-check-circle success-icon"></i><span>' . htmlspecialchars($_GET['success']) . '</span></div>';
-                    }
-                    if (isset($_GET['error'])) {
-                        echo '<div class="error-message show"><i class="fas fa-exclamation-circle error-icon"></i><span>' . htmlspecialchars($_GET['error']) . '</span></div>';
-                    }
-                    ?>
+                    
                     
                     <form action="update_profile.php" method="post" id="profileForm">
                         <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
@@ -160,6 +164,22 @@ $userInfo = $stmt->fetch(PDO::FETCH_ASSOC);
             setTimeout(function() {
                 document.querySelectorAll('.success-message, .error-message').forEach(function(el) {
                     el.classList.remove('show');
+                });
+            }, 5000);
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Auto-hide messages after 5 seconds (as a fallback if CSS animation doesn't work)
+            setTimeout(function() {
+                const messages = document.querySelectorAll('.message');
+                messages.forEach(function(message) {
+                    message.style.opacity = '0';
+                    message.style.transform = 'translateY(-20px)';
+                    
+                    // Remove from DOM after fade out animation completes
+                    setTimeout(function() {
+                        message.remove();
+                    }, 300);
                 });
             }, 5000);
         });

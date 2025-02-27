@@ -47,194 +47,343 @@ $userInfo = $stmt->fetch(PDO::FETCH_ASSOC);
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <script src="../js/calendar.js"></script>
     <style>
-        /* Styles additionnels spécifiques au tableau de bord */
+        /* Enhanced Dashboard Styles */
+
+        /* Main Layout and Container Improvements */
         .dashboard-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 2rem;
         }
-        
+
+        /* Dashboard Header Improvements */
         .dashboard-header {
-            margin-bottom: 2rem;
-            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
         }
-        
+
         .dashboard-header h1 {
-            font-size: 2.5rem;
-            background: linear-gradient(45deg, #fff, #666);
+            font-size: 2.8rem;
+            background: linear-gradient(to right, #007AFF, #5AC8FA);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: gradient 8s ease infinite;
             margin-bottom: 1rem;
+            letter-spacing: -0.5px;
         }
-        
+
+        .user-welcome {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            background: rgba(0, 122, 255, 0.08);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid #007AFF;
+        }
+
+        .user-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #007AFF, #5856D6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1.5rem;
+            font-size: 1.8rem;
+            color: white;
+            box-shadow: 0 5px 15px rgba(0, 122, 255, 0.3);
+        }
+
+        /* Dashboard Sections Improvements */
         .dashboard-sections {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 3rem;
         }
-        
+
         .dashboard-section {
-            background-color: rgba(26, 26, 26, 0.8);
+            background: rgba(26, 26, 26, 0.5);
+            backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 16px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
         }
-        
-        .dashboard-section:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+
+        /* Border animation instead of movement */
+        .dashboard-section {
+            position: relative;
         }
-        
+
+        .dashboard-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(to right, #007AFF, #5AC8FA);
+            opacity: 0.8;
+        }
+
+        .dashboard-section:hover::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 4px;
+            background: linear-gradient(to right, #5AC8FA, #007AFF);
+            opacity: 0.8;
+            animation: borderExpand 0.5s forwards;
+        }
+
+        @keyframes borderExpand {
+            0% {
+                width: 0;
+            }
+            100% {
+                width: 100%;
+            }
+        }
+
         .dashboard-section h2 {
             font-size: 1.8rem;
             color: #fff;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.8rem;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding-bottom: 0.8rem;
+            padding-bottom: 1rem;
             display: flex;
             align-items: center;
         }
-        
+
         .dashboard-section h2 i {
-            margin-right: 0.8rem;
+            margin-right: 1.2rem; /* Increased space between icon and text */
             color: #007AFF;
-        }
-        
-        .appointments-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-        
-        .appointment-card {
-            background-color: rgba(255, 255, 255, 0.05);
+            font-size: 1.6rem;
+            background: rgba(0, 122, 255, 0.1);
+            padding: 0.7rem;
             border-radius: 10px;
-            padding: 1.5rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
         }
-        
-        .appointment-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-            border-color: rgba(255, 255, 255, 0.2);
-            background-color: rgba(255, 255, 255, 0.08);
-        }
-        
-        .appointment-date {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: #007AFF;
-            margin-bottom: 0.5rem;
-        }
-        
-        .appointment-time {
-            font-size: 1rem;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 1rem;
-        }
-        
-        .appointment-description {
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 1.5rem;
-            font-size: 0.95rem;
-            line-height: 1.5;
-        }
-        
-        .appointment-actions {
-            display: flex;
-            justify-content: flex-end;
-        }
-        
-        .btn {
-            padding: 0.8rem 1.5rem;
-            border-radius: 6px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-            border: none;
-        }
-        
-        .btn:hover {
-            transform: translateY(-2px);
-        }
-        
-        .btn-primary {
-            background-color: #007AFF;
-            color: #fff;
-        }
-        
-        .btn-primary:hover {
-            background-color: #0066cc;
-        }
-        
-        .btn-danger {
-            background-color: #FF3B30;
-            color: #fff;
-        }
-        
-        .btn-danger:hover {
-            background-color: #e6352b;
-        }
-        
-        .no-appointments {
-            text-align: center;
-            color: rgba(255, 255, 255, 0.6);
-            font-style: italic;
-            padding: 2rem;
-        }
-        
+
+        /* Form Elements Improvements */
         .form-group {
-            margin-bottom: 1.2rem;
+            margin-bottom: 1.5rem;
         }
-        
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
         .form-control {
             width: 100%;
-            padding: 1rem;
+            padding: 1rem 1.2rem;
             background-color: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 6px;
+            border-radius: 10px;
             color: #fff;
+            font-size: 1rem;
             transition: all 0.3s ease;
         }
-        
+
         .form-control:focus {
             outline: none;
             border-color: rgba(0, 122, 255, 0.5);
             background-color: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.2);
         }
-        
+
         textarea.form-control {
-            min-height: 100px;
+            min-height: 120px;
             resize: vertical;
+            line-height: 1.6;
         }
-        
-        .user-welcome {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-        
-        .user-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background-color: #007AFF;
-            display: flex;
+
+        /* Button Improvements */
+        .btn {
+            padding: 0.9rem 1.8rem;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-            margin-right: 1rem;
-            font-size: 1.5rem;
-            color: white;
+            border: none;
+            line-height: 1.5;
+            position: relative;
+            overflow: hidden;
         }
-        
-        /* Messages de succès et d'erreur - version simplifiée */
+
+        /* Using the .nav-links a hover effect */
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.2),
+                transparent
+            );
+            transition: left 0.4s ease-in-out;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn i {
+            margin-right: 1.2rem; /* Increased space between icon and text */
+            font-size: 1.1rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(to right, #007AFF, #5AC8FA);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(to right, #0062CC, #4BA8F5);
+        }
+
+        .btn-danger {
+            background: linear-gradient(to right, #FF3B30, #FF9500);
+            color: #fff;
+        }
+
+        .btn-danger:hover {
+            background: linear-gradient(to right, #E0352B, #E68600);
+        }
+
+        /* Appointments Grid and Cards Improvements */
+        .appointments-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .appointment-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .appointment-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom right, rgba(0, 122, 255, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .appointment-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            border-color: rgba(0, 122, 255, 0.3);
+        }
+
+        .appointment-card:hover::after {
+            opacity: 1;
+        }
+
+        .appointment-date {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #007AFF;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .appointment-date::before {
+            content: '\f133';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            margin-right: 1.2rem; /* Increased space between icon and text */
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        .appointment-time {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .appointment-time::before {
+            content: '\f017';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            margin-right: 1.2rem; /* Increased space between icon and text */
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .appointment-description {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            border-left: 3px solid rgba(0, 122, 255, 0.5);
+        }
+
+        .appointment-actions {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 1rem;
+        }
+
+        /* No Appointments Message Improvements */
+        .no-appointments {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+            padding: 3rem 1rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            margin: 1.5rem 0;
+        }
+
+        .no-appointments i {
+            font-size: 3rem;
+            color: rgba(0, 122, 255, 0.5);
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .no-appointments p {
+            font-size: 1.1rem;
+            margin-bottom: 0.7rem;
+        }
+
+        /* Alert Messages Improvements */
         .message {
             position: fixed;
             top: 30px;
@@ -245,12 +394,12 @@ $userInfo = $stmt->fetch(PDO::FETCH_ASSOC);
             align-items: center;
             z-index: 1000;
             max-width: 400px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
             font-weight: 500;
             border-left: 5px solid;
             animation: messageAnimation 5s forwards;
         }
-        
+
         @keyframes messageAnimation {
             0% {
                 opacity: 0;
@@ -269,55 +418,109 @@ $userInfo = $stmt->fetch(PDO::FETCH_ASSOC);
                 transform: translateY(-20px);
             }
         }
-        
+
         .success-message {
-            background-color: rgba(40, 167, 69, 0.9);
+            background: rgba(40, 167, 69, 0.9);
             border-left-color: #1d8036;
             color: white;
+            backdrop-filter: blur(10px);
         }
-        
+
         .error-message {
-            background-color: rgba(220, 53, 69, 0.9);
+            background: rgba(220, 53, 69, 0.9);
             border-left-color: #a71d2a;
             color: white;
+            backdrop-filter: blur(10px);
         }
-        
+
         .success-icon, .error-icon {
-            margin-right: 1rem;
+            margin-right: 1.2rem; /* Increased space between icon and text */
             font-size: 1.3rem;
         }
-        
-        .success-message .success-icon {
-            color: #8cffaa;
-        }
-        
-        .error-message .error-icon {
-            color: #ffb3b8;
-        }
-        
-        @media (max-width: 768px) {
+
+        /* Responsive Design Improvements */
+        @media (max-width: 992px) {
             .dashboard-sections {
                 grid-template-columns: 1fr;
+            }
+            
+            .dashboard-container {
+                padding: 1.5rem;
+            }
+            
+            .dashboard-header h1 {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-section {
+                padding: 1.8rem;
             }
             
             .appointments-grid {
                 grid-template-columns: 1fr;
             }
             
+            .user-welcome {
+                flex-direction: column;
+                text-align: center;
+                padding: 1.2rem;
+            }
+            
+            .user-avatar {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+            
+            .message {
+                left: 15px;
+                right: 15px;
+                width: auto;
+            }
+        }
+
+        @media (max-width: 480px) {
             .dashboard-container {
                 padding: 1rem;
             }
             
-            .dashboard-section {
-                padding: 1.5rem;
+            .dashboard-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+            
+            .appointment-card {
+                padding: 1.2rem;
             }
         }
-        
-        /* Animation keyframes */
+
+        /* Animation for gradient backgrounds */
         @keyframes gradient {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
+        }
+
+        /* Custom scrollbar for better UX */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(0, 122, 255, 0.5);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 122, 255, 0.7);
         }
     </style>
 </head>

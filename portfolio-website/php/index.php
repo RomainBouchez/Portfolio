@@ -21,6 +21,7 @@ session_start();
             </button>
             <div class="nav-links" id="navLinks">
                 <?php if (isset($_SESSION['user_id'])): ?>
+                    <a href="../index.html">Portfolio</a>
                     <a href="dashboard.php">Tableau de bord</a>
                     <a href="profile.php">Mon profil</a>
                     <a href="logout.php">Déconnexion</a>

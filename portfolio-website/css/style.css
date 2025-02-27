@@ -28,6 +28,19 @@ body {
   padding: 1rem 2rem;
 }
 
+.navbar-container .logo {
+  font-size: 3rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  font-family: 'Coolvetica', sans-serif;
+  white-space: nowrap;
+  color: #fff !important; /* Force white color */
+  text-decoration: none; /* Remove any underline */
+  position: relative;
+  transition: text-shadow 0.3s ease;
+}
+
 .navbar-container {
   display: flex;
   justify-content: space-between;
@@ -38,13 +51,44 @@ body {
   position: relative;
 }
 
+.navbar-container a.logo:hover {
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  transition: text-shadow 0.3s ease;
+}
+
+.navbar-container a.logo:hover::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  animation: afterGlow 2s ease forwards;
+}
+
+@keyframes afterGlow {
+  0% {
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+  }
+  50% {
+      text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+  }
+  100% {
+      text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+  }
+}
+
+
 .logo {
   font-size: 3rem;
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 0.01em;
-  font-family: 'Coolvetica';
+  font-family: 'Coolvetica', sans-serif;
   white-space: nowrap;
+  color: #fff !important; /* Force white color */
+  text-decoration: none; /* Remove any underline */
 }
 
 .nav-links {

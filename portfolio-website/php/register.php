@@ -14,6 +14,7 @@ if (!isset($_SESSION['csrf_token'])) {
     <title>Inscription</title>
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="../css/project.css">
+        <link rel="stylesheet" href="../css/form-register.css">
         <link rel="stylesheet" href="../css/registration-styles.css">
 </head>
 <body>
@@ -34,20 +35,21 @@ if (!isset($_SESSION['csrf_token'])) {
     </div>
 
     <div class="main-content">
+        <?php
+            // Affichage des messages d'erreur ou de succès
+            if (isset($_GET['success'])) {
+                echo '<div class="message success-message"><i class="fas fa-check-circle success-icon"></i><span>' . htmlspecialchars($_GET['success']) . '</span></div>';
+            }
+            if (isset($_GET['error'])) {
+                echo '<div class="message error-message"><i class="fas fa-exclamation-circle error-icon"></i><span>' . htmlspecialchars($_GET['error']) . '</span></div>';
+            }
+        ?>
         <div class="registration-container">
             <div class="panel panel-primary">
                 <div class="panel-body">
                     <h2>Créer un compte</h2>
                     
-                    <?php
-                    // Affichage des messages d'erreur ou de succès
-                    if (isset($_GET['error'])) {
-                        echo '<div class="error-message show"><i class="fas fa-exclamation-circle error-icon"></i><span>' . htmlspecialchars($_GET['error']) . '</span></div>';
-                    }
-                    if (isset($_GET['success'])) {
-                        echo '<div class="success-message show"><i class="fas fa-check-circle success-icon"></i><span>' . htmlspecialchars($_GET['success']) . '</span></div>';
-                    }
-                    ?>
+                    
 
                     <form action="process_register.php" method="post" id="registrationForm">
                         <!-- Ajout d'un token CSRF pour sécuriser le formulaire -->
@@ -131,6 +133,46 @@ if (!isset($_SESSION['csrf_token'])) {
                 e.preventDefault();
                 alert('Les mots de passe ne correspondent pas.');
             }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add close button to each message
+            const messages = document.querySelectorAll('.message');
+            
+            messages.forEach(function(message) {
+                // Create close button
+                const closeButton = document.createElement('button');
+                closeButton.className = 'message-close';
+                closeButton.innerHTML = '&times;';
+                closeButton.setAttribute('aria-label', 'Close message');
+                
+                // Add close functionality
+                closeButton.addEventListener('click', function() {
+                    message.style.opacity = '0';
+                    message.style.transform = 'translateY(-20px)';
+                    
+                    // Remove from DOM after fade out
+                    setTimeout(function() {
+                        message.remove();
+                    }, 300);
+                });
+                
+                // Append to message
+                message.appendChild(closeButton);
+            });
+            
+            // Auto-hide messages after 8 seconds
+            setTimeout(function() {
+                messages.forEach(function(message) {
+                    message.style.opacity = '0';
+                    message.style.transform = 'translateY(-20px)';
+                    
+                    // Remove from DOM after fade out
+                    setTimeout(function() {
+                        message.remove();
+                    }, 300);
+                });
+            }, 8000);
         });
     </script>
 </body>

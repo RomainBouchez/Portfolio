@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/project.css">
     <link rel="stylesheet" href="../css/registration-styles.css">
+    <link rel="stylesheet" href="../css/form-login.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
@@ -25,25 +26,25 @@
     </div>
 
     <div class="main-content">
+        <?php
+            session_start();
+            // Génération d'un token CSRF
+            $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+            
+            // Affichage des messages d'erreur ou de succès
+            if (isset($_GET['success'])) {
+                echo '<div class="message success-message"><i class="fas fa-check-circle success-icon"></i><span>' . htmlspecialchars($_GET['success']) . '</span></div>';
+            }
+            if (isset($_GET['error'])) {
+                echo '<div class="message error-message"><i class="fas fa-exclamation-circle error-icon"></i><span>' . htmlspecialchars($_GET['error']) . '</span></div>';
+            }
+        ?>
         <div class="registration-container">
             <div class="panel panel-primary">
                 <div class="panel-body">
                     <h2>Connexion</h2>
                     
-                    <?php
-                    session_start();
                     
-                    // Génération d'un token CSRF
-                    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
-                    
-                    // Affichage des messages d'erreur ou de succès
-                    if (isset($_GET['error'])) {
-                        echo '<div class="error-message show"><i class="fas fa-exclamation-circle error-icon"></i><span>' . htmlspecialchars($_GET['error']) . '</span></div>';
-                    }
-                    if (isset($_GET['success'])) {
-                        echo '<div class="success-message show"><i class="fas fa-check-circle success-icon"></i><span>' . htmlspecialchars($_GET['success']) . '</span></div>';
-                    }
-                    ?>
 
                     <form action="process_login.php" method="post" id="loginForm">
                         <!-- Token CSRF pour la sécurité -->
@@ -91,6 +92,22 @@
             setTimeout(function() {
                 document.querySelectorAll('.success-message, .error-message').forEach(function(el) {
                     el.classList.remove('show');
+                });
+            }, 5000);
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Auto-hide messages after 5 seconds (as a fallback if CSS animation doesn't work)
+            setTimeout(function() {
+                const messages = document.querySelectorAll('.message');
+                messages.forEach(function(message) {
+                    message.style.opacity = '0';
+                    message.style.transform = 'translateY(-20px)';
+                    
+                    // Remove from DOM after fade out animation completes
+                    setTimeout(function() {
+                        message.remove();
+                    }, 300);
                 });
             }, 5000);
         });
