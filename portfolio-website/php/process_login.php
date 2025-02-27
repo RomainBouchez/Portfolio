@@ -2,23 +2,23 @@
 session_start();
 require_once 'config.php';
 
-// Vérification du token CSRF
+// Verify CSRF token (keep your existing code)
 if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
     header('Location: login.php?error=Session expirée, veuillez réessayer');
     exit();
 }
 
-// Récupération des données du formulaire
+// Get form data (keep your existing code)
 $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
 $password = $_POST['password'];
 
-// Validation des données
+// Validate data (keep your existing code)
 if (empty($email) || empty($password)) {
     header('Location: login.php?error=Veuillez remplir tous les champs');
     exit();
 }
 
-// Connexion à la base de données
+// Database connection (keep your existing code)
 try {
     $conn = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASS);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -27,8 +27,9 @@ try {
     exit();
 }
 
-// Vérification des identifiants
-$stmt = $conn->prepare("SELECT id, first_name, last_name, password_hash FROM users WHERE email = :email");
+// Check credentials
+// MODIFY THIS QUERY to include is_active in the SELECT 
+$stmt = $conn->prepare("SELECT id, first_name, last_name, password_hash, is_active FROM users WHERE email = :email");
 $stmt->bindParam(':email', $email);
 $stmt->execute();
 
@@ -39,18 +40,24 @@ if ($stmt->rowCount() == 0) {
 
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-// Vérification du mot de passe
+// Verify password
 if (!password_verify($password, $user['password_hash'])) {
     header('Location: login.php?error=Email ou mot de passe incorrect');
     exit();
 }
 
-// Création de la session
+// ADD THIS NEW CHECK for account activation
+if ($user['is_active'] == 0) {
+    header('Location: login.php?error=Votre compte n\'est pas encore activé. Veuillez vérifier votre email et cliquer sur le lien d\'activation.');
+    exit();
+}
+
+// Create session (keep your existing code)
 $_SESSION['user_id'] = $user['id'];
 $_SESSION['user_name'] = $user['first_name'] . ' ' . $user['last_name'];
 $_SESSION['user_email'] = $email;
 
-// Redirection vers le tableau de bord
+// Redirect to dashboard
 header('Location: dashboard.php');
 exit();
 ?>

@@ -28,7 +28,6 @@ session_start();
                     <a href="index.php">Accueil</a>
                     <a href="login.php">Connexion</a>
                     <a href="register.php">Inscription</a>
-                    <a href="contact.php">Contact</a>
                 <?php endif; ?>
             </div>
         </div>

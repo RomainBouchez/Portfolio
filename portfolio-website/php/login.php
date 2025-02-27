@@ -17,7 +17,7 @@
                 <span></span>
             </button>
             <div class="nav-links" id="navLinks">
-                <a href="../index.php">Accueil</a>
+                <a href="index.php">Accueil</a>
                 <a href="login.php">Connexion</a>
                 <a href="register.php">Inscription</a>
             </div>

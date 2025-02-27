@@ -1,4 +1,14 @@
 <!DOCTYPE html>
+<?php
+// Start the session at the very beginning of the file
+session_start();
+
+// Generate a CSRF token if one doesn't exist
+if (!isset($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+?>
+
 <html>
 <head>
     <title>Inscription</title>

@@ -12,10 +12,6 @@
     overflow: hidden;
 }
 
-.panel-primary {
-    border-top: 3px solid #007AFF;
-}
-
 .panel-body {
     padding: 2rem;
 }
@@ -94,6 +90,7 @@
 .btn-danger {
     background-color: #FF3B30;
     color: #fff;
+    margin-top: 1rem;
 }
 
 .btn-danger:hover {
