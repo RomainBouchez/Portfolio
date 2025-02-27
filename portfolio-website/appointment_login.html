@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Login - Romain Bouchez</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/project.css">
+    <link rel="stylesheet" href="css/registration-styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .login-container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #fff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        
+        .login-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .login-header h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .login-form .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .login-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #555;
+        }
+        
+        .login-form input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        .login-form input:focus {
+            border-color: #4a90e2;
+            outline: none;
+        }
+        
+        .login-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .login-btn:hover {
+            background-color: #3a80d2;
+        }
+        
+        .register-link {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        
+        .register-link a {
+            color: #4a90e2;
+            text-decoration: none;
+        }
+        
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+        
+        .appointment-details {
+            display: none;
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .appointment-details h3 {
+            margin-top: 0;
+            color: #333;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .appointment-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        
+        .action-btn {
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+        }
+        
+        .modify-btn {
+            background-color: #4a90e2;
+            color: white;
+        }
+        
+        .delete-btn {
+            background-color: #e24a4a;
+            color: white;
+        }
+        
+        .action-btn:hover {
+            opacity: 0.9;
+        }
+        
+        .message {
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            text-align: center;
+        }
+        
+        .success-message {
+            background-color: rgba(46, 125, 50, 0.9);
+            color: white;
+        }
+        
+        .error-message {
+            background-color: rgba(198, 40, 40, 0.9);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar">
+<div class="navbar-container">
+    <h2 class="logo">PORTFOLIO ROMAIN BOUCHEZ</h2>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="projects.html">Project</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+    </div>
+    <button class="hamburger" aria-label="menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <div class="contact-info">
+        <div>bouchez@et.esiea.fr</div>
+        <div>06 49 17 63 12</div>
+    </div>
+</div>
+</nav>
+
+<main class="main-content">
+    <div class="login-container">
+        <div class="login-header">
+            <h2>Appointment Management</h2>
+            <p>Login to view, modify or delete your appointment</p>
+        </div>
+        
+        <form id="loginForm" class="login-form">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            
+            <button type="submit" class="login-btn">Login</button>
+            
+            <div class="register-link">
+                <p>Don't have an appointment yet? <a href="form.html">Register here</a></p>
+            </div>
+        </form>
+        
+        <div id="messageContainer"></div>
+        
+        <div id="appointmentDetails" class="appointment-details">
+            <h3>Your Appointment</h3>
+            <div id="appointmentInfo"></div>
+            
+            <div class="appointment-actions">
+                <button id="modifyBtn" class="action-btn modify-btn">Modify Appointment</button>
+                <button id="deleteBtn" class="action-btn delete-btn">Delete Appointment</button>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2024 Romain Bouchez</p>
+</footer>
+
+<script>
+$(document).ready(function() {
+    // Handle login form submission
+    $('#loginForm').on('submit', function(e) {
+        e.preventDefault();
+        
+        const email = $('#email').val();
+        const password = $('#password').val();
+        
+        // AJAX request to PHP script for login
+        $.ajax({
+            type: 'POST',
+            url: 'php/appointment_login.php',
+            data: {
+                email: email,
+                password: password,
+                action: 'login'
+            },
+            dataType: 'json',
+            success: function(response) {
+                if(response.status === 'success') {
+                    // Display success message
+                    $('#messageContainer').html(`
+                        <div class="message success-message">
+                            <i class="fas fa-check-circle"></i> 
+                            Login successful!
+                        </div>
+                    `);
+                    
+                    // Hide login form
+                    $('#loginForm').hide();
+                    
+                    // Display appointment details
+                    $('#appointmentInfo').html(`
+                        <p><strong>Name:</strong> ${response.data.first_name} ${response.data.last_name}</p>
+                        <p><strong>Email:</strong> ${response.data.email}</p>
+                        <p><strong>Phone:</strong> ${response.data.phone_number}</p>
+                        <p><strong>Date:</strong> ${response.data.appointment_date}</p>
+                        <p><strong>Time:</strong> ${response.data.appointment_time}</p>
+                    `);
+                    
+                    // Store appointment ID for modification/deletion
+                    $('#appointmentDetails').data('id', response.data.id);
+                    $('#appointmentDetails').data('email', response.data.email);
+                    
+                    // Show appointment details
+                    $('#appointmentDetails').show();
+                } else {
+                    // Display error message
+                    $('#messageContainer').html(`
+                        <div class="message error-message">
+                            <i class="fas fa-exclamation-circle"></i> 
+                            ${response.message}
+                        </div>
+                    `);
+                }
+            },
+            error: function() {
+                $('#messageContainer').html(`
+                    <div class="message error-message">
+                        <i class="fas fa-exclamation-circle"></i> 
+                        An error occurred. Please try again.
+                    </div>
+                `);
+            }
+        });
+    });
+    
+    // Handle modify button click
+    $('#modifyBtn').on('click', function() {
+        const email = $('#appointmentDetails').data('email');
+        // Redirect to registration form with email parameter
+        window.location.href = 'projects.html?email=' + encodeURIComponent(email);
+    });
+    
+    // Handle delete button click
+    $('#deleteBtn').on('click', function() {
+        if(confirm('Are you sure you want to delete your appointment? This action cannot be undone.')) {
+            const id = $('#appointmentDetails').data('id');
+            
+            // AJAX request to PHP script for deletion
+            $.ajax({
+                type: 'POST',
+                url: 'php/appointment_login.php',
+                data: {
+                    id: id,
+                    action: 'delete'
+                },
+                dataType: 'json',
+                success: function(response) {
+                    if(response.status === 'success') {
+                        // Display success message
+                        $('#messageContainer').html(`
+                            <div class="message success-message">
+                                <i class="fas fa-check-circle"></i> 
+                                Your appointment has been deleted successfully!
+                            </div>
+                        `);
+                        
+                        // Hide appointment details
+                        $('#appointmentDetails').hide();
+                        
+                        // Show login form again
+                        $('#loginForm').show();
+                        $('#loginForm')[0].reset();
+                    } else {
+                        // Display error message
+                        $('#messageContainer').html(`
+                            <div class="message error-message">
+                                <i class="fas fa-exclamation-circle"></i> 
+                                ${response.message}
+                            </div>
+                        `);
+                    }
+                },
+                error: function() {
+                    $('#messageContainer').html(`
+                        <div class="message error-message">
+                            <i class="fas fa-exclamation-circle"></i> 
+                            An error occurred. Please try again.
+                        </div>
+                    `);
+                }
+            });
+        }
+    });
+});
+</script>
+
+<script src="js/script.js"></script>
+</body>
+</html>

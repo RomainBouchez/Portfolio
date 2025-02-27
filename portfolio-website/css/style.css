@@ -1,3 +1,12 @@
+
+@font-face {
+  font-family: 'Coolvetica';
+  src: url('/fonts/Coolvetica-HeavyComp.woff2') format('woff2'),
+       url('/fonts/Coolvetica-HeavyComp.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -34,7 +43,7 @@ body {
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 0.01em;
-  font-family: coolvetica;
+  font-family: 'Coolvetica';
   white-space: nowrap;
 }
 
@@ -319,7 +328,6 @@ footer {
   padding: 2rem;
   background-color: rgba(18, 18, 18, 0.95);
   border-top: 1px solid rgba(255, 255, 255, 0.1);
-  position: fixed;
   bottom: 0;
   width: 100%;
 }

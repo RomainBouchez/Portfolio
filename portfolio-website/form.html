@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Registration Page</title>
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/project.css">
+    <link rel="stylesheet" href="css/calendar-style.css">
+    <link rel="stylesheet" href="css/registration-styles.css">
+    <!-- Required JavaScript -->
+    <script src="js/calendar.js"></script>
+
+  </head>
+  <body>
+      <div class="registration-container" style="padding: 1rem; max-width: 100%; margin: 0; position: relative;">
+        <div class="row">
+          <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-primary">
+              <div class="panel-body">
+                <form action="php/connect.php" method="post" id="registrationForm2">
+                  <div class="form-group">
+                    <label for="firstName2">First Name</label>
+                    <input type="text" class="form-control" id="firstName2" name="firstName" required />
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" class="form-control" id="lastName" name="lastName" required />
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="gender">Gender</label>
+                    <div>
+                      <label class="radio-inline">
+                        <input type="radio" name="gender" value="m" id="male" required />Male
+                      </label>
+                      <label class="radio-inline">
+                        <input type="radio" name="gender" value="f" id="female" />Female
+                      </label>
+                      <label class="radio-inline">
+                        <input type="radio" name="gender" value="o" id="others" />Others
+                      </label>
+                    </div>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" required />
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" required />
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="number">Phone Number</label>
+                    <input type="tel" class="form-control" id="number" name="number" required />
+                  </div>
+                  
+                  <div class="form-group">
+                  <label for="appointmentDisplay">Appointment Date & Time</label>
+                  <input type="text" class="form-control" id="appointmentDisplay" placeholder="Click to select date and time" readonly required />
+                  <input type="hidden" id="appointmentDateTime" name="appointmentDateTime" required />
+                  </div>
+                  
+                  <button type="submit" class="btn btn-primary">Register</button>
+                </form>
+
+                <div class="form-group">
+                  <p>Already have an appointment? <a href="appointment_login.html">Login to manage it</a></p>
+                </div>
+                
+              </div>
+              <div class="panel-footer text-right">
+                <small>&copy; Technical Babaji</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Success Message -->
+      <div class="message success-message" id="successMessage">
+        <i class="fas fa-check-circle success-icon"></i>
+        <span>Registration successful! We'll contact you shortly.</span>
+      </div>
+      
+      <!-- Error Message -->
+      <div class="message error-message" id="errorMessage">
+        <i class="fas fa-exclamation-circle error-icon"></i>
+        <span id="errorText"></span>
+      </div>
+
+      <!-- Required JavaScript -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+      
+      <!-- Initialize the calendar -->
+      <script>
+          document.addEventListener('DOMContentLoaded', function() {
+          const appointmentDateInput = document.getElementById('appointmentDateTime');
+          const appointmentPicker = new Calendar(appointmentDateInput, {
+              displayElementId: 'appointmentDisplay',
+              minDate: new Date(),
+              maxDate: new Date(new Date().setFullYear(new Date().getFullYear() + 1)),
+              minTime: '09:00',
+              maxTime: '17:00',
+              timeSlotInterval: 30,
+              onChange: function(datetime) {
+              if (datetime) {
+                  // Update hidden inputs for PHP processing
+                  const dateStr = datetime.toISOString().split('T')[0];
+                  const timeStr = datetime.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit' });
+                  
+                  // Remove any existing hidden inputs
+                  const existingInputs = document.querySelectorAll('input[name="appointmentDate"], input[name="appointmentTime"]');
+                  existingInputs.forEach(input => input.remove());
+                  
+                  // These will be used by the PHP script
+                  const dateTimeInputs = `
+                  <input type="hidden" name="appointmentDate" value="${dateStr}" />
+                  <input type="hidden" name="appointmentTime" value="${timeStr}" />
+                  `;
+                  
+                  // Add to form
+                  document.getElementById('appointmentDateTime').insertAdjacentHTML('afterend', dateTimeInputs);
+              }
+              }
+          });
+          });
+
+        // Handle form submission
+        $('#registrationForm').on('submit', function(e) {
+          e.preventDefault();
+          $.ajax({
+            type: 'POST',
+            url: 'php/connect.php',
+            data: $(this).serialize(),
+            dataType: 'json',
+            success: function(response) {
+              if(response.status === 'success') {
+                let message = response.message;
+                if(response.isUpdate) {
+                  message = `You updated your appointment from ${response.oldDate} ${response.oldTime} to ${response.newDate} ${response.newTime}`;
+                }
+                $('#successMessage span').text(message);
+                $('#successMessage').addClass('show');
+                $('#registrationForm')[0].reset();
+                setTimeout(function() {
+                  $('#successMessage').removeClass('show');
+                }, 5000);
+              } else {
+                $('#errorText').text(response.message);
+                $('#errorMessage').addClass('show');
+                setTimeout(function() {
+                  $('#errorMessage').removeClass('show');
+                }, 5000);
+              }
+            },
+            error: function() {
+              $('#errorText').text('An error occurred. Please try again.');
+              $('#errorMessage').addClass('show');
+              setTimeout(function() {
+                $('#errorMessage').removeClass('show');
+              }, 5000);
+            }
+          });
+        });
+      </script>
+  </body>
+</html>

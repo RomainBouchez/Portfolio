@@ -9,6 +9,7 @@
     gap: 2rem;
     max-width: 1400px;
     margin: 0 auto;
+    justify-items: center; /* Center the items horizontally */
 }
 
 .portfolio-item {
@@ -21,6 +22,8 @@
     aspect-ratio: 3/4;
     cursor: pointer;
     transform-origin: center;
+    max-height: 350px;
+    width: 100%; /* Ensure it takes full width up to the max-width */
 }
 
 .portfolio-item:hover {
@@ -710,18 +713,11 @@ footer {
 
     .portfolio-item {
         aspect-ratio: 2/3;
+        max-width: 100%; /* Allow full width on smaller screens */
     }
 }
 
 @media (max-width: 480px) {
-    .main-content {
-        padding: calc(80px + 1rem) 1rem 1rem;
-    }
-
-    .portfolio-grid {
-        gap: 1rem;
-    }
-
     .portfolio-item-info h2 {
         font-size: 1.1rem;
     }

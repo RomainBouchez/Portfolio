@@ -7,6 +7,10 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/project.css">
+<link rel="stylesheet" href="css/calendar-style.css">
+<link rel="stylesheet" href="css/registration-styles.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="js/calendar.js"></script>
 </head>
 <body>
 <nav class="navbar">
@@ -116,48 +120,265 @@
                     </div>
             
                     <div class="project-section">
-                        <h3><i class="fas fa-terminal"></i> Installation Guide</h3>
-                        <div class="installation-steps">
-                            <ol>
-                                <li>
-                                    <h4>Clone the repository</h4>
-                                    <div class="code-snippet">
-                                        <code>git clone https://github.com/N3tup/Challenge-technique-JAVA-2024.git</code>
-                                        <button class="copy-btn" aria-label="Copy code"><i class="fas fa-copy"></i></button>
-                                    </div>
-                                </li>
-                                <li>
-                                    <h4>Navigate to project directory</h4>
-                                    <div class="code-snippet">
-                                        <code>cd Challenge_Technique_Drach_Bouchez</code>
-                                        <button class="copy-btn" aria-label="Copy code"><i class="fas fa-copy"></i></button>
-                                    </div>
-                                </li>
-                                <li>
-                                    <h4>Compile with Maven</h4>
-                                    <div class="code-snippet">
-                                        <code>mvn clean install</code>
-                                        <button class="copy-btn" aria-label="Copy code"><i class="fas fa-copy"></i></button>
-                                    </div>
-                                </li>
-                                <li>
-                                    <h4>Start the application</h4>
-                                    <div class="code-snippet">
-                                        <code>mvn spring-boot:run</code>
-                                        <button class="copy-btn" aria-label="Copy code"><i class="fas fa-copy"></i></button>
-                                    </div>
-                                </li>
-                                <li>
-                                    <h4>Access the application</h4>
-                                    <div class="code-snippet">
-                                        <code>http://localhost:8080</code>
-                                        <button class="copy-btn" aria-label="Copy code"><i class="fas fa-copy"></i></button>
-                                    </div>
-                                </li>
-                            </ol>
+                        <h3><i class="fas fa-laptop-code"></i> Project Requirements</h3>
+                        <div class="requirements-container">
+                            <div class="requirement">
+                                <i class="fab fa-java requirement-icon"></i>
+                                <span>Java 11 or higher</span>
+                            </div>
+                            <div class="requirement">
+                                <i class="fas fa-project-diagram requirement-icon"></i>
+                                <span>Maven 3.6 or higher</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="project-footer">
+                        <a href="https://github.com/N3tup/Challenge-technique-JAVA-2024" class="github-btn" target="_blank">
+                            <i class="fab fa-github"></i> View on GitHub
+                        </a>
+                        <div class="author-info">
+                            <p>Développé  par  Romain Bouchez</p>
+                            <p><i class="fas fa-envelope"></i> bouchez@et.esiea.fr</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="project2-modal" class="modal">
+            <span class="close">&times;</span>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <img src="img/projet_1_acceuil_1400x400.png" alt="Discord-like Chat Application" class="header-image">
+                    <div class="project-title-container">
+                        <h1 class="project-title">Discord-like Chat Application</h1>
+                        <div class="tech-badges">
+                            <span class="badge">Java</span>
+                            <span class="badge">Spring Boot</span>
+                            <span class="badge">Maven</span>
+                            <span class="badge">WebSockets</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal-content-info">
+                    <div class="project-overview">
+                        <p class="lead-text">A real-time chat application inspired by Discord, developed using Java, Spring Boot, and Maven. The application enables users to chat in public and private channels and manage their accounts.</p>
+                        
+                        <div class="demo-images">
+                            <img src="img/projet_1_acceuil.png" alt="Login Screen" class="demo-image" width="600" height="400">
+                            <img src="img/projet_1_chat1.png" alt="Chat Interface" class="demo-image" width="600" height="400">
+                            <img src="img/projet_1_chat2.png" alt="Private Message" class="demo-image" width="600" height="400">
+                        </div>
+                    </div>
+                    
+                    <div class="project-section">
+                        <h3><i class="fas fa-star"></i> Key Features</h3>
+                        <div class="features-grid">
+                            <div class="feature">
+                                <i class="fas fa-comments feature-icon"></i>
+                                <h4>Real-time Chat</h4>
+                                <p>Communicate instantly in public servers with multiple users</p>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-user-friends feature-icon"></i>
+                                <h4>Private Messaging</h4>
+                                <p>Send direct messages to connected users</p>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-key feature-icon"></i>
+                                <h4>Password Reset</h4>
+                                <p>Secure account recovery through email verification</p>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-signal feature-icon"></i>
+                                <h4>Online Status</h4>
+                                <p>Track which members are currently active</p>
+                            </div>
                         </div>
                     </div>
             
+                    <div class="project-section">
+                        <h3><i class="fas fa-code"></i> Technologies Used</h3>
+                        <div class="tech-stack">
+                            <div class="tech-category">
+                                <h4>Backend</h4>
+                                <ul>
+                                    <li><span class="tech-icon"><i class="fab fa-java"></i></span> Java</li>
+                                    <li><span class="tech-icon"><i class="fas fa-leaf"></i></span> Spring Boot</li>
+                                    <li><span class="tech-icon"><i class="fas fa-project-diagram"></i></span> Maven</li>
+                                </ul>
+                            </div>
+                            <div class="tech-category">
+                                <h4>Frontend</h4>
+                                <ul>
+                                    <li><span class="tech-icon"><i class="fab fa-html5"></i></span> HTML5</li>
+                                    <li><span class="tech-icon"><i class="fab fa-css3-alt"></i></span> CSS3</li>
+                                    <li><span class="tech-icon"><i class="fab fa-js"></i></span> JavaScript</li>
+                                </ul>
+                            </div>
+                            <div class="tech-category">
+                                <h4>Real-time Communication</h4>
+                                <ul>
+                                    <li><span class="tech-icon"><i class="fas fa-exchange-alt"></i></span> SockJS</li>
+                                    <li><span class="tech-icon"><i class="fas fa-network-wired"></i></span> STOMP</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-section">
+                        <h3><i class="fas fa-user-plus"></i> Registration Form</h3>
+                        <div class="registration-container" style="padding: 1rem; max-width: 100%; margin: 0; position: relative;">
+                          <div class="row">
+                            <div class="col-md-6 col-md-offset-3" style="width: 100%;">
+                                <div class="panel-body">
+                                  <form action="php/connect.php" method="post" id="registrationForm2">
+                                    <div class="form-group">
+                                      <label for="firstName2">First Name</label>
+                                      <input type="text" class="form-control" id="firstName2" name="firstName" required />
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                      <label for="lastName2">Last Name</label>
+                                      <input type="text" class="form-control" id="lastName2" name="lastName" required />
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                      <label for="gender2">Gender</label>
+                                      <div>
+                                        <label class="radio-inline">
+                                          <input type="radio" name="gender" value="m" id="male2" required />Male
+                                        </label>
+                                        <label class="radio-inline">
+                                          <input type="radio" name="gender" value="f" id="female2" />Female
+                                        </label>
+                                        <label class="radio-inline">
+                                          <input type="radio" name="gender" value="o" id="others2" />Others
+                                        </label>
+                                      </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                      <label for="email2">Email</label>
+                                      <input type="email" class="form-control" id="email2" name="email" required />
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                      <label for="password2">Password</label>
+                                      <input type="password" class="form-control" id="password2" name="password" required />
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                      <label for="number2">Phone Number</label>
+                                      <input type="tel" class="form-control" id="number2" name="number" required />
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                      <label for="appointmentDisplay2">Appointment Date & Time</label>
+                                      <input type="text" class="form-control" id="appointmentDisplay2" placeholder="Click to select date and time" readonly required />
+                                      <input type="hidden" id="appointmentDateTime2" name="appointmentDateTime" required />
+                                    </div>
+                                    
+                                    <button type="submit" class="btn btn-primary">Register</button>
+                                  </form>
+
+                                  <div class="form-group">
+                                    <p>Already have an appointment? <a href="appointment_login.html">Login to manage it</a></p>
+                                  </div>
+                                </div>
+                              </div>
+                          </div>
+                          
+                          <!-- Success Message -->
+                          <div class="message success-message" id="successMessage2" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10000; display: none; max-width: 80%; background: rgba(46, 125, 50, 0.9); color: white; padding: 15px 20px; border-radius: 5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                            <i class="fas fa-check-circle success-icon"></i>
+                            <span>Registration successful! We'll contact you shortly.</span>
+                          </div>
+                          
+                          <!-- Error Message -->
+                          <div class="message error-message" id="errorMessage2" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10000; display: none; max-width: 80%; background: rgba(198, 40, 40, 0.9); color: white; padding: 15px 20px; border-radius: 5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                            <i class="fas fa-exclamation-circle error-icon"></i>
+                            <span id="errorText2"></span>
+                          </div>
+                        </div>
+                    
+                        <!-- Initialize calendar for this form -->
+                        <script>
+                          document.addEventListener('DOMContentLoaded', function() {
+                            const appointmentDateInput2 = document.getElementById('appointmentDateTime2');
+                            const appointmentPicker2 = new Calendar(appointmentDateInput2, {
+                              displayElementId: 'appointmentDisplay2',
+                              minDate: new Date(),
+                              maxDate: new Date(new Date().setFullYear(new Date().getFullYear() + 1)),
+                              minTime: '09:00',
+                              maxTime: '17:00',
+                              timeSlotInterval: 30,
+                              onChange: function(datetime) {
+                                if (datetime) {
+                                  // Update hidden inputs for PHP processing
+                                  const dateStr = datetime.toISOString().split('T')[0];
+                                  const timeStr = datetime.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit' });
+                                  
+                                  // Remove any existing hidden inputs
+                                  const existingInputs = document.querySelectorAll('input[name="appointmentDate2"], input[name="appointmentTime2"]');
+                                  existingInputs.forEach(input => input.remove());
+                                  
+                                  // These will be used by the PHP script
+                                  const dateTimeInputs = `
+                                  <input type="hidden" name="appointmentDate" value="${dateStr}" />
+                                  <input type="hidden" name="appointmentTime" value="${timeStr}" />
+                                  `;
+                                  
+                                  // Add to form
+                                  document.getElementById('appointmentDateTime2').insertAdjacentHTML('afterend', dateTimeInputs);
+                                }
+                              }
+                            });
+                          });
+                    
+                          // Handle form submission with fixed message display
+                          $(document).ready(function() {
+                            $('#registrationForm2').on('submit', function(e) {
+                              e.preventDefault();
+                              $.ajax({
+                                type: 'POST',
+                                url: 'php/connect.php',
+                                data: $(this).serialize(),
+                                dataType: 'json',
+                                success: function(response) {
+                                  if(response.status === 'success') {
+                                    let message = response.message;
+                                    if(response.isUpdate) {
+                                      message = `You updated your appointment from ${response.oldDate} ${response.oldTime} to ${response.newDate} ${response.newTime}`;
+                                    }
+                                    $('#successMessage2 span').text(message);
+                                    $('#successMessage2').css('display', 'block');
+                                    $('#registrationForm2')[0].reset();
+                                    setTimeout(function() {
+                                      $('#successMessage2').css('display', 'none');
+                                    }, 5000);
+                                  } else {
+                                    $('#errorText2').text(response.message);
+                                    $('#errorMessage2').css('display', 'block');
+                                    setTimeout(function() {
+                                      $('#errorMessage2').css('display', 'none');
+                                    }, 5000);
+                                  }
+                                },
+                                error: function() {
+                                  $('#errorText2').text('An error occurred. Please try again.');
+                                  $('#errorMessage2').css('display', 'block');
+                                  setTimeout(function() {
+                                    $('#errorMessage2').css('display', 'none');
+                                  }, 5000);
+                                }
+                              });
+                            });
+                          });
+                        </script>
+                    </div>
+
                     <div class="project-section">
                         <h3><i class="fas fa-laptop-code"></i> Project Requirements</h3>
                         <div class="requirements-container">
@@ -173,7 +394,7 @@
                     </div>
                     
                     <div class="project-footer">
-                        <a href="https://github.com/N3tup/Challenge-technique-JAVA-2024" class="github-btn">
+                        <a href="https://github.com/N3tup/Challenge-technique-JAVA-2024" class="github-btn" target="_blank">
                             <i class="fab fa-github"></i> View on GitHub
                         </a>
                         <div class="author-info">
@@ -186,13 +407,13 @@
         </div>
 
         <!-- Project 2 Modal -->
-        <div id="project2-modal" class="modal">
+        <div id="project3-modal" class="modal">
             <span class="close">&times;</span>
             <div class="modal-content">
                 <div class="modal-header">
                     <img src="https://placehold.co/1200x400" alt="Project 2" class="header-image">
                     <div class="project-title-container">
-                        <h1 class="project-title">Project Title 2</h1>
+                        <h1 class="project-title">More projects will be uploaded here soon</h1>
                         <div class="tech-badges">
                             <span class="badge">Technology 1</span>
                             <span class="badge">Technology 2</span>
@@ -204,7 +425,7 @@
                 
                 <div class="modal-content-info">
                     <div class="project-overview">
-                        <p class="lead-text">Project description goes here. This is a brief overview of the project and its main features.</p>
+                        <p class="lead-text"></p>
                         
                         <div class="demo-images">
                             <img src="https://placehold.co/600x400" alt="Project 2 Demo" class="demo-image">
@@ -213,118 +434,13 @@
                         </div>
                     </div>
                     
-                    <div class="project-section">
-                        <h3><i class="fas fa-star"></i> Key Features</h3>
-                        <div class="features-grid">
-                            <div class="feature">
-                                <i class="fas fa-comments feature-icon"></i>
-                                <h4>Feature 1</h4>
-                                <p>Feature 1 description goes here</p>
-                            </div>
-                            <div class="feature">
-                                <i class="fas fa-user-friends feature-icon"></i>
-                                <h4>Feature 2</h4>
-                                <p>Feature 2 description goes here</p>
-                            </div>
-                            <div class="feature">
-                                <i class="fas fa-key feature-icon"></i>
-                                <h4>Feature 3</h4>
-                                <p>Feature 3 description goes here</p>
-                            </div>
-                            <div class="feature">
-                                <i class="fas fa-signal feature-icon"></i>
-                                <h4>Feature 4</h4>
-                                <p>Feature 4 description goes here</p>
-                            </div>
-                        </div>
-                    </div>
-            
-                    <div class="project-section">
-                        <h3><i class="fas fa-code"></i> Technologies Used</h3>
-                        <div class="tech-stack">
-                            <div class="tech-category">
-                                <h4>Backend</h4>
-                                <ul>
-                                    <li><span class="tech-icon"><i class="fab fa-java"></i></span> Technology 1</li>
-                                    <li><span class="tech-icon"><i class="fas fa-leaf"></i></span> Technology 2</li>
-                                    <li><span class="tech-icon"><i class="fas fa-project-diagram"></i></span> Technology 3</li>
-                                </ul>
-                            </div>
-                            <div class="tech-category">
-                                <h4>Frontend</h4>
-                                <ul>
-                                    <li><span class="tech-icon"><i class="fab fa-html5"></i></span> Technology 4</li>
-                                    <li><span class="tech-icon"><i class="fab fa-css3-alt"></i></span> Technology 5</li>
-                                    <li><span class="tech-icon"><i class="fab fa-js"></i></span> Technology 6</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-            
-                    <div class="project-section">
-                        <h3><i class="fas fa-terminal"></i> Installation Guide</h3>
-                        <div class="installation-steps">
-                            <ol>
-                                <li>
-                                    <h4>Clone the repository</h4>
-                                    <div class="code-snippet">
-                                        <code>git clone https://github.com/username/project2.git</code>
-                                        <button class="copy-btn" aria-label="Copy code"><i class="fas fa-copy"></i></button>
-                                    </div>
-                                </li>
-                                <li>
-                                    <h4>Navigate to project directory</h4>
-                                    <div class="code-snippet">
-                                        <code>cd project2</code>
-                                        <button class="copy-btn" aria-label="Copy code"><i class="fas fa-copy"></i></button>
-                                    </div>
-                                </li>
-                                <li>
-                                    <h4>Install dependencies</h4>
-                                    <div class="code-snippet">
-                                        <code>npm install</code>
-                                        <button class="copy-btn" aria-label="Copy code"><i class="fas fa-copy"></i></button>
-                                    </div>
-                                </li>
-                                <li>
-                                    <h4>Start the application</h4>
-                                    <div class="code-snippet">
-                                        <code>npm start</code>
-                                        <button class="copy-btn" aria-label="Copy code"><i class="fas fa-copy"></i></button>
-                                    </div>
-                                </li>
-                                <li>
-                                    <h4>Access the application</h4>
-                                    <div class="code-snippet">
-                                        <code>http://localhost:3000</code>
-                                        <button class="copy-btn" aria-label="Copy code"><i class="fas fa-copy"></i></button>
-                                    </div>
-                                </li>
-                            </ol>
-                        </div>
-                    </div>
-            
-                    <div class="project-section">
-                        <h3><i class="fas fa-laptop-code"></i> Project Requirements</h3>
-                        <div class="requirements-container">
-                            <div class="requirement">
-                                <i class="fab fa-node-js requirement-icon"></i>
-                                <span>Node.js 14 or higher</span>
-                            </div>
-                            <div class="requirement">
-                                <i class="fas fa-project-diagram requirement-icon"></i>
-                                <span>NPM 6 or higher</span>
-                            </div>
-                        </div>
-                    </div>
-                    
                     <div class="project-footer">
-                        <a href="https://github.com/username/project2" class="github-btn">
+                        <a href="https://github.com/username/project2" class="github-btn" target="_blank">
                             <i class="fab fa-github"></i> View on GitHub
                         </a>
                         <div class="author-info">
-                            <p>Developed by Your Name</p>
-                            <p><i class="fas fa-envelope"></i> your.email@example.com</p>
+                            <p>Developed by Romain BOUCHEZ</p>
+                            <p><i class="fas fa-envelope"></i> bouchez@et.esiea.fr</p>
                         </div>
                     </div>
                 </div>
@@ -338,26 +454,18 @@
             </div>
         </div>
         <div class="portfolio-item" data-modal="project2-modal">
+            <img src="https://placehold.co/600x400" alt="Discord-like Chat Application">
+            <div class="portfolio-item-info">
+                <h2>Discord-like Chat Application</h2>
+                <p>A real-time chat application built with Java Spring Boot, featuring public and private messaging channels.</p>
+            </div>
+        </div>
+        <div class="portfolio-item" data-modal="project3-modal">
             <img src="https://placehold.co/600x400" alt="Project 2">
             <div class="portfolio-item-info">
-                <h2>Project Title 2</h2>
-                <p>A sophisticated application showcasing advanced programming concepts and clean architecture.</p>
+                <h2>More projects will be uploaded here soon</h2>
+                <p></p>
             </div>
-        </div>
-        <div class="portfolio-item">
-            <img src="https://placehold.co/600x400" alt="Project 3">
-            <div class="portfolio-item-info">
-                <h2>Project Title 3</h2>
-                <p>A creative project exploring new technologies and pushing the boundaries of web development.</p>
-            </div>
-        </div>
-        <div class="portfolio-item">
-            <img src="https://placehold.co/600x400" alt="Project 4">
-            <div class="portfolio-item-info">
-                <h2>Project Title 4</h2>
-                <p>An experimental project combining modern design principles with cutting-edge technology.</p>
-            </div>
-        </div>
     </div>
 </main>
 
