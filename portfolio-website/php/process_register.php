@@ -3,7 +3,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-require __DIR__ . '\..\vendor\autoload.php'; // Chemin vers l'autoload de Composer
+require __DIR__ . '\..\vendor\autoload.php';
 
 session_start();
 require_once 'config.php';
@@ -108,19 +108,64 @@ try {
         $mail->setFrom($gmailUsername, 'SystemRDV');
         $mail->addAddress($email, $firstName . ' ' . $lastName);
         $mail->isHTML(true);
-        $mail->Subject = 'Confirmation de votre compte SystemRDV';
+        $mail->Subject = 'Confirm Your SystemRDV Account';
         
         // Générer le lien de vérification
         $verificationLink = 'http://' . $_SERVER['HTTP_HOST'] . '/Perso/portfolio-website/php/verify.php?token=' . $verificationToken;
         
-        $mail->Body    = "
-            <h2>Bienvenue sur SystemRDV, $firstName!</h2>
-            <p>Merci de vous être inscrit. Pour activer votre compte, veuillez cliquer sur le lien ci-dessous :</p>
-            <p><a href='$verificationLink'>Confirmer mon compte</a></p>
-            <p>Si vous n'avez pas créé ce compte, ignorez cet email.</p>verificationLink 
-        ";
-        $mail->AltBody = "Bienvenue sur SystemRDV, $firstName! 
-        Pour activer votre compte, copiez ce lien dans votre navigateur : $verificationLink";
+        // Création du corps de l'email HTML
+        $emailBody = "
+        <!DOCTYPE html>
+        <html lang='en'>
+        <head>
+            <meta charset='UTF-8'>
+            <style>
+                body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; }
+                .container { background: #f4f4f4; padding: 20px; border-radius: 10px; }
+                .btn {
+                    display: inline-block;
+                    background: #007AFF;
+                    color: white;
+                    padding: 10px 20px;
+                    text-decoration: none;
+                    border-radius: 5px;
+                    margin: 15px 0;
+                }
+                .footer { color: #777; font-size: 12px; margin-top: 20px; }
+            </style>
+        </head>
+        <body>
+            <div class='container'>
+                <h1>&#128640; Welcome to SystemRDV!</h1>
+                <p>Hi <strong>$firstName</strong>,</p>
+               
+                <p>We're thrilled to have you on board with SystemRDV, your personal appointment management companion!</p>
+               
+                <h2>Your Account Activation</h2>
+                <p>To kick-start your journey and unlock the full potential of our platform, please click the button below to verify your email:</p>
+               
+                <a href='$verificationLink' class='btn'>Confirm My Account</a>
+               
+                <h3>Why Verify?</h3>
+                <ul>
+                    <li>&#128737;&#65039; Secure your account</li>
+                    <li>&#128275; Unlock all features</li>
+                    <li>&#128197; Start managing your appointments seamlessly</li>
+                </ul>
+               
+                <p>If you didn't create this account, simply ignore this email.</p>
+               
+                <div class='footer'>
+                    <p>Note: This link will expire in 24 hours for security reasons.</p>
+                    <p>&copy; " . date('Y') . " SystemRDV. All rights reserved.</p>
+                </div>
+            </div>
+        </body>
+        </html>";
+        
+        $mail->Body = $emailBody;
+        $mail->AltBody = "Welcome to SystemRDV, $firstName! 
+        To activate your account, copy this link in your browser: $verificationLink";
 
         $mail->send();
         
