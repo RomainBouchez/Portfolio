@@ -282,6 +282,7 @@
     border-radius: 12px;
     background: rgba(255,255,255,0.05);
     padding: 2rem;
+    padding-top: 1rem;
     box-shadow: 0 4px 20px rgba(0,0,0,0.2);
 }
 
@@ -293,6 +294,7 @@
     color: #fff;
     border-bottom: none;
     padding-bottom: 0;
+    margin-top: 1rem;
 }
 
 .project-section h3 i {
@@ -550,7 +552,7 @@
 .project-section a {
     color: #fff;
     text-decoration: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    
     transition: border-color 0.3s ease;
 }
 

@@ -26,6 +26,7 @@ session_start();
                     <a href="profile.php">Mon profil</a>
                     <a href="logout.php">Déconnexion</a>
                 <?php else: ?>
+                    <a href="../index.html">Portfolio</a>
                     <a href="index.php">Accueil</a>
                     <a href="login.php">Connexion</a>
                     <a href="register.php">Inscription</a>
