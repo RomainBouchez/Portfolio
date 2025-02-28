@@ -671,7 +671,6 @@ $userInfo = $stmt->fetch(PDO::FETCH_ASSOC);
                 }
             });
         });
-        });
     </script>
 </body>
 </html>
