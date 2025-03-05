@@ -127,3 +127,23 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+document.querySelectorAll('.copy-btn').forEach(button => {
+    button.addEventListener('click', () => {
+        const codeElement = button.parentElement.querySelector('code');
+        const textToCopy = codeElement.textContent;
+        
+        navigator.clipboard.writeText(textToCopy).then(() => {
+            // Show feedback
+            const originalIcon = button.innerHTML;
+            button.innerHTML = '<i class="fas fa-check"></i>';
+            button.style.backgroundColor = 'rgba(49, 49, 49, 0.76)';
+            
+            // Reset after animation
+            setTimeout(() => {
+                button.innerHTML = originalIcon;
+                button.style.backgroundColor = '';
+            }, 1500);
+        });
+    });
+});

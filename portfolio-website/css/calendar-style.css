@@ -171,3 +171,23 @@
 .time-slots::-webkit-scrollbar-thumb:hover {
     background: rgba(255, 255, 255, 0.3);
 }
+
+/* Styles pour les créneaux désactivés */
+.time-slot.disabled {
+    opacity: 0.6;
+    background: rgba(255, 50, 50, 0.2);
+    cursor: not-allowed;
+    position: relative;
+}
+
+.time-slot.disabled:hover {
+    background: rgba(255, 50, 50, 0.2);
+    transform: none;
+}
+
+.booked-indicator {
+    font-size: 0.7rem;
+    display: block;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 0.2rem;
+}

@@ -31,13 +31,15 @@ try {
     exit();
 }
 
-// Vérification que le rendez-vous appartient bien à l'utilisateur
-$stmt = $conn->prepare("SELECT id FROM appointments WHERE id = :id AND user_id = :userId");
+// Récupérer le rendez-vous pour enregistrer le créneau libéré
+$stmt = $conn->prepare("SELECT appointment_date, appointment_time FROM appointments WHERE id = :id AND user_id = :userId");
 $stmt->bindParam(':id', $appointmentId);
 $stmt->bindParam(':userId', $_SESSION['user_id']);
 $stmt->execute();
 
-if ($stmt->rowCount() == 0) {
+$appointment = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if (!$appointment) {
     header('Location: dashboard.php?error=Ce rendez-vous n\'existe pas ou ne vous appartient pas');
     exit();
 }
@@ -49,7 +51,14 @@ try {
     $stmt->bindParam(':userId', $_SESSION['user_id']);
     $stmt->execute();
     
-    header('Location: dashboard.php?success=Rendez-vous annulé avec succès');
+    // Formatage de la date et de l'heure pour le message de confirmation
+    $date = new DateTime($appointment['appointment_date']);
+    $formattedDate = $date->format('d/m/Y');
+    
+    $time = new DateTime($appointment['appointment_time']);
+    $formattedTime = $time->format('H:i');
+    
+    header('Location: dashboard.php?success=Rendez-vous du ' . $formattedDate . ' à ' . $formattedTime . ' annulé avec succès');
     exit();
     
 } catch(PDOException $e) {

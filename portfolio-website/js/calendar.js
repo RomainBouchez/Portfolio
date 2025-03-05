@@ -16,6 +16,7 @@ class Calendar {
         this.selectedDate = null;
         this.selectedTime = null;
         this.currentMonth = new Date();
+        this.bookedSlots = []; // Pour stocker les créneaux déjà réservés
         
         this.init();
     }
@@ -23,7 +24,23 @@ class Calendar {
     init() {
         this.createCalendarElement();
         this.attachEventListeners();
-        this.render();
+        this.fetchBookedSlots(); // Récupérer les créneaux déjà réservés
+    }
+    
+    // Nouvelle méthode pour récupérer les créneaux réservés
+    fetchBookedSlots() {
+        fetch('php/get_booked_slots.php')
+            .then(response => response.json())
+            .then(data => {
+                if (data.bookedSlots) {
+                    this.bookedSlots = data.bookedSlots;
+                    this.render(); // Recharger le calendrier avec les créneaux désactivés
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching booked slots:', error);
+                this.render(); // Rendre quand même le calendrier en cas d'erreur
+            });
     }
     
     createCalendarElement() {
@@ -167,15 +184,32 @@ class Calendar {
             <div class="time-picker">
                 <div class="time-picker-header">Select Time</div>
                 <div class="time-slots">
-                    ${timeSlots.map(time => `
-                        <div class="time-slot ${this.selectedTime === time ? 'selected' : ''}"
-                             data-time="${time}">
-                            ${this.formatTime(time)}
-                        </div>
-                    `).join('')}
+                    ${timeSlots.map(time => {
+                        // Vérifier si ce créneau est déjà réservé
+                        const isBooked = this.isTimeSlotBooked(this.selectedDate, time);
+                        return `
+                            <div class="time-slot ${this.selectedTime === time ? 'selected' : ''} ${isBooked ? 'disabled' : ''}"
+                                 data-time="${time}"
+                                 ${isBooked ? 'disabled' : ''}>
+                                ${this.formatTime(time)}
+                                ${isBooked ? '<span class="booked-indicator">Réservé</span>' : ''}
+                            </div>
+                        `;
+                    }).join('')}
                 </div>
             </div>
         `;
+    }
+    
+    // Nouvelle méthode pour vérifier si un créneau est déjà réservé
+    isTimeSlotBooked(date, time) {
+        if (!date || !this.bookedSlots.length) return false;
+        
+        const dateStr = this.formatLocalDate(date);
+        
+        return this.bookedSlots.some(slot => {
+            return slot.appointment_date === dateStr && slot.appointment_time === time;
+        });
     }
     
     generateTimeSlots() {
@@ -256,21 +290,11 @@ class Calendar {
         });
         
         // Time selection
-        const timeSlots = this.popup.querySelectorAll('.time-slot');
-        if (timeSlots) {
-            timeSlots.forEach(slot => {
-                slot.addEventListener('click', () => {
-                    this.selectedTime = slot.dataset.time;
-                    this.updateInput();
-                    this.hideCalendar();
-                    this.options.onChange(this.getSelection());
-                });
-            });
-        }
+        this.attachTimeHandlers();
     }
 
     attachTimeHandlers() {
-        const timeSlots = this.popup.querySelectorAll('.time-slot');
+        const timeSlots = this.popup.querySelectorAll('.time-slot:not(.disabled)');
         if (timeSlots && timeSlots.length > 0) {
             timeSlots.forEach(slot => {
                 slot.addEventListener('click', (event) => {

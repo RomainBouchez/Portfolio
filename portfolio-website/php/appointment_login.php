@@ -38,8 +38,12 @@ function handleLogin($conn) {
         return;
     }
     
-    // Prepare SQL statement to prevent SQL injection
-    $stmt = $conn->prepare("SELECT id, first_name, last_name, email, password_hash, phone_number, appointment_date, appointment_time FROM form WHERE email = ?");
+    // Prepare SQL statement to prevent SQL injection - Now targeting appointments table
+    $stmt = $conn->prepare("SELECT a.id, u.first_name, u.last_name, u.email, u.password_hash, u.phone_number, a.appointment_date, a.appointment_time 
+                           FROM users u 
+                           JOIN appointments a ON u.id = a.user_id 
+                           WHERE u.email = ?");
+    
     $stmt->bind_param('s', $email);
     
     // Execute the statement
@@ -52,45 +56,107 @@ function handleLogin($conn) {
     // Get the result
     $result = $stmt->get_result();
     
-    // Check if user exists
+    // Check if user exists and has appointments
     if ($result->num_rows === 0) {
-        echo json_encode(['status' => 'error', 'message' => 'User not found. Please check your email or register a new appointment.']);
+        // Try to find user without appointments
         $stmt->close();
+        $userStmt = $conn->prepare("SELECT id, first_name, last_name, email, password_hash, phone_number FROM users WHERE email = ?");
+        $userStmt->bind_param('s', $email);
+        
+        if (!$userStmt->execute()) {
+            echo json_encode(['status' => 'error', 'message' => 'Database error: ' . $userStmt->error]);
+            $userStmt->close();
+            return;
+        }
+        
+        $userResult = $userStmt->get_result();
+        
+        if ($userResult->num_rows === 0) {
+            echo json_encode(['status' => 'error', 'message' => 'User not found. Please check your email or register a new account.']);
+            $userStmt->close();
+            return;
+        }
+        
+        // User exists but has no appointments
+        $user = $userResult->fetch_assoc();
+        
+        // Verify password
+        if (!password_verify($password, $user['password_hash'])) {
+            echo json_encode(['status' => 'error', 'message' => 'Invalid password. Please try again.']);
+            $userStmt->close();
+            return;
+        }
+        
+        // Return success with user data but no appointments
+        echo json_encode([
+            'status' => 'success',
+            'message' => 'Login successful, but you don\'t have any appointments yet.',
+            'data' => [
+                'id' => $user['id'],
+                'first_name' => $user['first_name'],
+                'last_name' => $user['last_name'],
+                'email' => $user['email'],
+                'phone_number' => $user['phone_number'],
+                'has_appointments' => false
+            ]
+        ]);
+        
+        $userStmt->close();
         return;
     }
     
-    // Get user data
-    $user = $result->fetch_assoc();
+    // Get user data - with appointments
+    $appointments = [];
+    $userData = null;
+    
+    while ($row = $result->fetch_assoc()) {
+        if ($userData === null) {
+            $userData = [
+                'id' => $row['id'],
+                'first_name' => $row['first_name'],
+                'last_name' => $row['last_name'],
+                'email' => $row['email'],
+                'phone_number' => $row['phone_number'],
+                'password_hash' => $row['password_hash']
+            ];
+        }
+        
+        // Format the date for display
+        $appointmentDate = new DateTime($row['appointment_date']);
+        $formattedDate = $appointmentDate->format('l, F j, Y');
+        
+        // Format the time for display
+        $appointmentTime = new DateTime($row['appointment_time']);
+        $formattedTime = $appointmentTime->format('g:i A');
+        
+        $appointments[] = [
+            'id' => $row['id'],
+            'date' => $formattedDate,
+            'time' => $formattedTime,
+            'raw_date' => $row['appointment_date'],
+            'raw_time' => $row['appointment_time']
+        ];
+    }
     
     // Verify password
-    // Note: In your connect.php, you're storing the hashed password directly without verification
-    // For login, we should verify the password using password_verify
-    if (!password_verify($password, $user['password_hash'])) {
+    if (!password_verify($password, $userData['password_hash'])) {
         echo json_encode(['status' => 'error', 'message' => 'Invalid password. Please try again.']);
         $stmt->close();
         return;
     }
     
-    // Format the date for display
-    $appointmentDate = new DateTime($user['appointment_date']);
-    $formattedDate = $appointmentDate->format('l, F j, Y');
-    
-    // Format the time for display (assuming it's stored in 24h format)
-    $appointmentTime = new DateTime($user['appointment_time']);
-    $formattedTime = $appointmentTime->format('g:i A');
-    
-    // Return success with user data
+    // Return success with user data and appointments
     echo json_encode([
         'status' => 'success',
         'message' => 'Login successful',
         'data' => [
-            'id' => $user['id'],
-            'first_name' => $user['first_name'],
-            'last_name' => $user['last_name'],
-            'email' => $user['email'],
-            'phone_number' => $user['phone_number'],
-            'appointment_date' => $formattedDate,
-            'appointment_time' => $formattedTime
+            'id' => $userData['id'],
+            'first_name' => $userData['first_name'],
+            'last_name' => $userData['last_name'],
+            'email' => $userData['email'],
+            'phone_number' => $userData['phone_number'],
+            'has_appointments' => true,
+            'appointments' => $appointments
         ]
     ]);
     
@@ -107,7 +173,7 @@ function handleDelete($conn) {
     }
     
     // Prepare SQL statement to prevent SQL injection
-    $stmt = $conn->prepare("DELETE FROM form WHERE id = ?");
+    $stmt = $conn->prepare("DELETE FROM appointments WHERE id = ?");
     $stmt->bind_param('i', $id);
     
     // Execute the statement
