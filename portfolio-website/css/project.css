@@ -19,10 +19,10 @@
     background: #1a1a1a;
     border: 1px solid rgba(255, 255, 255, 0.1);
     transition: all 0.4s ease;
-    aspect-ratio: 3/4;
+    aspect-ratio: 4/5;
     cursor: pointer;
     transform-origin: center;
-    max-height: 350px;
+    max-height: 400px;
     width: 100%; /* Ensure it takes full width up to the max-width */
 }
 
@@ -34,7 +34,7 @@
 
 .portfolio-item img {
     width: 100%;
-    height: 60%;
+    height: 55%;
     object-fit: cover;
     transition: transform 0.4s ease;
 }
@@ -50,6 +50,10 @@
         rgba(26, 26, 26, 0.8),
         rgba(26, 26, 26, 1)
     );
+    height: 45%; /* Définir une hauteur fixe pour la zone de texte */
+    overflow-y: auto; /* Ajouter un défilement si le texte est trop long */
+    display: flex;
+    flex-direction: column;
 }
 
 .portfolio-item-info h2 {
@@ -62,6 +66,8 @@
     font-size: 0.9rem;
     line-height: 1.5;
     color: rgba(255, 255, 255, 0.7);
+    max-height: none;
+    overflow: visible;
 }
 
 /* Modal styles */

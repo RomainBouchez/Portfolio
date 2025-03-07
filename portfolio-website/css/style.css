@@ -1,8 +1,8 @@
 
 @font-face {
   font-family: 'Coolvetica';
-  src: url('/fonts/Coolvetica-HeavyComp.woff2') format('woff2'),
-       url('/fonts/Coolvetica-HeavyComp.woff') format('woff');
+  src: url('../fonts/Coolvetica-HeavyComp.woff2') format('woff2'),
+       url('../fonts/Coolvetica-HeavyComp.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
