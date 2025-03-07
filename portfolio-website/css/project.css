@@ -5,11 +5,12 @@
 
 .portfolio-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
     max-width: 1400px;
     margin: 0 auto;
     justify-items: center; /* Center the items horizontally */
+    padding: 0 1rem;
 }
 
 .portfolio-item {
@@ -19,11 +20,13 @@
     background: #1a1a1a;
     border: 1px solid rgba(255, 255, 255, 0.1);
     transition: all 0.4s ease;
-    aspect-ratio: 4/5;
     cursor: pointer;
     transform-origin: center;
-    max-height: 400px;
-    width: 100%; /* Ensure it takes full width up to the max-width */
+    width: 100%;
+    /* Use min-height instead of aspect-ratio and max-height */
+    min-height: 360px;
+    display: flex;
+    flex-direction: column;
 }
 
 .portfolio-item:hover {
@@ -34,7 +37,7 @@
 
 .portfolio-item img {
     width: 100%;
-    height: 55%;
+    height: 200px; /* Fixed height for consistency */
     object-fit: cover;
     transition: transform 0.4s ease;
 }
@@ -50,8 +53,7 @@
         rgba(26, 26, 26, 0.8),
         rgba(26, 26, 26, 1)
     );
-    height: 45%; /* Définir une hauteur fixe pour la zone de texte */
-    overflow-y: auto; /* Ajouter un défilement si le texte est trop long */
+    flex-grow: 1; /* Allow it to expand to fill remaining space */
     display: flex;
     flex-direction: column;
 }
@@ -183,7 +185,6 @@
 /* Updated content layout for expanded state */
 .modal-content.expanded img {
     width: 100%;
-    
     object-fit: cover;
     height: 100%;
 }
@@ -498,20 +499,48 @@
     color: #264de4;
 }
 
-@media (max-width: 768px) {
-    .file-structure {
-        padding: 1rem;
-    }
-    
-    .file {
-        flex-wrap: wrap;
-    }
-    
-    .file-comment {
-        margin-left: 1.5rem;
-        display: block;
-        width: 100%;
-    }
+.code-snippet {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(0,0,0,0.3);
+    border-radius: 6px;
+    padding: 0.8rem 1rem;
+    margin-top: 0.5rem;
+    position: relative; /* Add position relative */
+}
+
+.code-snippet code {
+    font-family: 'JetBrains Mono', monospace;
+    width: calc(100% - 35px); /* Give space for copy button */
+    padding: 0;
+    background: transparent;
+    overflow-x: auto; /* Allow horizontal scrolling for long code */
+    white-space: nowrap; /* Keep code on single line */
+}
+
+.copy-btn {
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.5);
+    cursor: pointer;
+    transition: color 0.3s ease;
+    position: absolute; /* Position absolutely */
+    right: 25px;
+    top: 50%; /* Center vertically */
+    transform: translateY(-50%); /* Perfect vertical centering */
+    z-index: 5; /* Ensure button stays above code */
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+}
+
+.copy-btn:hover {
+    color: #5865F2;
+    background-color: rgba(255,255,255,0.1);
 }
 
 .requirements-container {
@@ -611,7 +640,6 @@
 .project-section a {
     color: #fff;
     text-decoration: none;
-    
     transition: border-color 0.3s ease;
 }
 
@@ -631,6 +659,16 @@
 
 /* Improve mobile display */
 @media (max-width: 768px) {
+    .main-content {
+        padding-top: calc(80px + 1rem);
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    
+    .portfolio-grid {
+        gap: 1.5rem;
+    }
+    
     .project-title {
         font-size: 2rem;
     }
@@ -693,7 +731,6 @@
         width: 25px; /* Smaller button on mobile */
     }
     
-
     /* Fix modal display on mobile */
     .modal-content.expanded {
         width: 95vw;
@@ -709,10 +746,31 @@
     .tech-badges {
         gap: 0.3rem; /* Less gap on mobile */
     }
+    
+    .portfolio-item {
+        min-height: 320px; /* Height for mobile */
+    }
+    
+    .portfolio-item img {
+        height: 180px; /* Smaller images on mobile */
+    }
 }
 
 /* Fix for very small screens */
 @media (max-width: 480px) {
+    .portfolio-grid {
+        grid-template-columns: 1fr; /* Single column on very small screens */
+    }
+    
+    .portfolio-item {
+        min-height: 300px;
+        max-width: 100%; /* Ensure full width */
+    }
+    
+    .portfolio-item img {
+        height: 160px; /* Even smaller images on very small screens */
+    }
+    
     .project-title {
         font-size: 1.5rem; /* Even smaller title on very small screens */
     }
@@ -747,6 +805,14 @@
     .feature-icon {
         font-size: 2rem; /* Smaller feature icons */
     }
+    
+    .portfolio-item-info h2 {
+        font-size: 1.1rem;
+    }
+
+    .portfolio-item-info p {
+        font-size: 0.85rem;
+    }
 }
 
 
@@ -758,8 +824,6 @@ footer {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-
-
 /* Responsive styles */
 @media (max-width: 968px) {
     .contact-info {
@@ -767,23 +831,17 @@ footer {
     }
 }
 
-@media (max-width: 768px) {
-    .portfolio-grid {
-        gap: 1.5rem;
+/* Hamburger menu improvements */
+@media (max-width: 860px) {
+    .nav-links {
+        padding-top: 100px; /* More space at the top */
     }
-
-    .portfolio-item {
-        aspect-ratio: 2/3;
-        max-width: 100%; /* Allow full width on smaller screens */
+    
+    .nav-links a {
+        margin-bottom: 0.8rem; /* Add space between links */
     }
-}
-
-@media (max-width: 480px) {
-    .portfolio-item-info h2 {
-        font-size: 1.1rem;
-    }
-
-    .portfolio-item-info p {
-        font-size: 0.8rem;
+    
+    .hamburger {
+        z-index: 1002; /* Ensure the hamburger is always on top */
     }
 }
