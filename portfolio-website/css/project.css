@@ -241,6 +241,68 @@
     pointer-events: auto;
 }
 
+/* Custom styling for Twitthé modal only */
+#Twitthé-modal .feature-icon {
+    color: #1F5A42; /* Change from #5865F2 to dark green */
+  }
+  
+  #Twitthé-modal .github-btn {
+    background: #1F5A42; /* Change button background */
+    transition: background 0.3s ease;
+  }
+  
+  #Twitthé-modal .github-btn:hover {
+    background: #143b2d; /* Darker shade for hover state */
+  }
+  
+  #Twitthé-modal h3 i {
+    color: #1F5A42; /* Change section header icons */
+  }
+  
+  #Twitthé-modal .feature:hover {
+    background: rgba(31, 90, 66, 0.15); /* Change feature hover background */
+  }
+  
+  #Twitthé-modal .tech-icon {
+    background: rgba(31, 90, 66, 0.2); /* Change tech icon background */
+  }
+  
+  #Twitthé-modal .lead-text {
+    border-left: 4px solid #1F5A42; /* Change left border of lead text */
+  }
+  
+  #Twitthé-modal .tech-category h4 {
+    color: #1F5A42; /* Change tech category headers */
+  }
+  
+  #Twitthé-modal .requirement-icon {
+    color: #1F5A42; /* Change requirement icons */
+  }
+  
+  #Twitthé-modal .installation-steps li::before {
+    background: #1F5A42; /* Change numbered list circles */
+  }
+  
+  #Twitthé-modal .copy-btn:hover {
+    color: #1F5A42; /* Change copy button hover */
+  }
+  
+  /* Additional styles for any other theme-specific elements */
+  #Twitthé-modal .badge {
+    background: rgba(31, 90, 66, 0.2); /* Change badge color */
+  }
+
+  #Twitthé-modal .directory-name {
+    font-weight: bold;
+    color: #1F5A42;
+    margin-bottom: 0.8rem;
+    font-size: 1.1rem;
+}
+
+#Twitthé-modal .directory-name i {
+    margin-right: 0.5rem;
+    color: #1F5A42;
+}
 
 .close {
     position: fixed;
