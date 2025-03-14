@@ -147,3 +147,54 @@ document.querySelectorAll('.copy-btn').forEach(button => {
         });
     });
 });
+
+// Image full screen
+document.addEventListener('DOMContentLoaded', function() {
+    // Créer un conteneur pour l'image en plein écran
+    const fullscreenContainer = document.createElement('div');
+    fullscreenContainer.className = 'fullscreen-image-container';
+    fullscreenContainer.style.display = 'none';
+    document.body.appendChild(fullscreenContainer);
+
+    // Ajouter un gestionnaire d'événements à toutes les images demo-image
+    document.querySelectorAll('.demo-image').forEach(img => {
+        img.addEventListener('click', function(e) {
+            e.stopPropagation(); // Empêcher la propagation pour ne pas fermer la modal
+            
+            // Créer l'élément img pour l'affichage en plein écran
+            const fullscreenImg = document.createElement('img');
+            fullscreenImg.src = this.src;
+            fullscreenImg.alt = this.alt;
+            fullscreenImg.className = 'fullscreen-image';
+            
+            // Vider et remplir le conteneur
+            fullscreenContainer.innerHTML = '';
+            fullscreenContainer.appendChild(fullscreenImg);
+            
+            // Afficher le conteneur
+            fullscreenContainer.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Empêcher le défilement de la page
+        });
+    });
+
+    // Fermer l'image en plein écran en cliquant en dehors ou avec Escape
+    fullscreenContainer.addEventListener('click', function(e) {
+        // Vérifier si le clic est sur le conteneur mais pas sur l'image
+        if (e.target === fullscreenContainer) {
+            closeFullscreenImage();
+        }
+    });
+
+    // Gestionnaire d'événement pour la touche Escape
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && fullscreenContainer.style.display === 'flex') {
+            closeFullscreenImage();
+        }
+    });
+
+    // Fonction pour fermer l'image en plein écran
+    function closeFullscreenImage() {
+        fullscreenContainer.style.display = 'none';
+        document.body.style.overflow = ''; // Restaurer le défilement de la page
+    }
+});
