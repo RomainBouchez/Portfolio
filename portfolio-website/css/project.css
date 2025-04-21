@@ -1,6 +1,7 @@
 .main-content {
-    padding: calc(80px + 2rem) 2rem 2rem; /* Adjusted padding to match other pages */
-    flex: 1;
+    padding: calc(80px + 2rem) 2rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 .portfolio-grid {
@@ -12,6 +13,8 @@
     justify-items: center; /* Center the items horizontally */
     padding: 0 1rem;
 }
+
+
 
 .portfolio-item {
     position: relative;
@@ -115,13 +118,14 @@
 
 .tech-badges {
     display: flex;
-    flex-wrap: wrap;
     gap: 0.5rem;
+    flex-wrap: wrap;
+    margin: 1rem 0;
 }
 
 .badge {
+    background: rgba(255, 255, 255, 0.2);
     padding: 0.3rem 1rem;
-    background: rgba(255,255,255,0.2);
     border-radius: 50px;
     font-size: 0.9rem;
     backdrop-filter: blur(4px);

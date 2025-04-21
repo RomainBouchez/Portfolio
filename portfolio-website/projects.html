@@ -701,7 +701,240 @@
             </div>
         </div>
 
-        
+        <!-- Portfolio Item for AICal -->
+        <div class="portfolio-item" data-modal="aical-modal">
+            <img src="img/AICal_Logo_Text.png" alt="AICal - AI Calorie Calculator">
+            <div class="portfolio-item-info">
+                <h2>AICal - AI Calorie Calculator</h2>
+                <p>Next.js application using AI to analyze food images and provide nutritional information.</p>
+            </div>
+        </div>
+
+        <!-- AICal Project Modal -->
+        <div id="aical-modal" class="modal">
+            <span class="close">&times;</span>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <img src="img/AICal_Logo_Text.png" alt="AICal Dashboard" class="header-image">
+                    <div class="project-title-container">
+                        <h1 class="project-title">AICal - AI Calorie Calculator</h1>
+                        <div class="tech-badges">
+                            <span class="badge">Next.js 15</span>
+                            <span class="badge">React 19</span>
+                            <span class="badge">Prisma</span>
+                            <span class="badge">Tailwind CSS</span>
+                            <span class="badge">Google Gemini AI</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal-content-info">
+                    <div class="project-overview">
+                        <p class="lead-text">AI-powered nutrition analysis application that uses computer vision to analyze food images and provide detailed nutritional information including calories, macronutrients, and vitamin content.</p>
+                        
+                        <div class="demo-images">
+                            <img src="img/aical-dashboard.jpg" alt="Nutrition Dashboard" class="demo-image">
+                            <img src="img/aical-modification.jpg" alt="Food Journal" class="demo-image">
+                            <img src="img/aical-daily.jpg" alt="Food Analysis" class="demo-image">
+                        </div>
+                    </div>
+                    <a href="https://cala-ivercel-zvmo.vercel.app/" class="github-btn" target="_blank" style="margin-top: 20px; display: inline-block;">
+                        Try the App
+                    </a>
+                    
+                    <div class="project-section">
+                        <h3><i class="fas fa-star"></i> Key Features</h3>
+                        <div class="features-grid">
+                            <div class="feature">
+                                <i class="fas fa-camera feature-icon"></i>
+                                <h4>AI Food Analysis</h4>
+                                <p>Image recognition for instant nutritional breakdown</p>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-chart-pie feature-icon"></i>
+                                <h4>Nutrition Dashboard</h4>
+                                <p>Daily tracking of calories and macronutrients</p>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-bullseye feature-icon"></i>
+                                <h4>Goal Setting</h4>
+                                <p>Customizable daily and meal-specific targets</p>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-database feature-icon"></i>
+                                <h4>Food Journal</h4>
+                                <p>Historical tracking with date filtering</p>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <div class="project-section">
+                        <h3><i class="fas fa-code"></i> Technologies Used</h3>
+                        <div class="tech-stack">
+                            <div class="tech-category">
+                                <h4>Frontend</h4>
+                                <ul>
+                                    <li><span class="tech-icon"><i class="fab fa-react"></i></span> React 19</li>
+                                    <li><span class="tech-icon"><i class="fab fa-js"></i></span> Next.js 15</li>
+                                    <li><span class="tech-icon"><i class="fab fa-css3-alt"></i></span> Tailwind CSS</li>
+                                    <li><span class="tech-icon"><i class="fas fa-palette"></i></span> Shadcn UI</li>
+                                    <li><span class="tech-icon"><img src="img/framer.svg" alt="Framer Motion" class="tech-icon-img" style="width: 16px; height: 16px;"></span> Framer Motion</li>
+                                </ul>
+                            </div>
+                            <div class="tech-category">
+                                <h4>Backend</h4>
+                                <ul>
+                                    <li><span class="tech-icon"><i class="fas fa-database"></i></span> PostgreSQL</li>
+                                    <li><span class="tech-icon"><i class="fas fa-leaf"></i></span> Prisma ORM</li>
+                                    <li><span class="tech-icon"><i class="fas fa-server"></i></span> Next.js API Routes</li>
+                                </ul>
+                            </div>
+                            <div class="tech-category">
+                                <h4>AI Services</h4>
+                                <ul>
+                                    <li><span class="tech-icon"><i class="fas fa-robot"></i></span> Google Gemini AI</li>
+                                </ul>
+                            </div>
+                            <div class="tech-category">
+                                <h4>Utilities</h4>
+                                <ul>
+                                    <li><span class="tech-icon"><i class="fas fa-shield-alt"></i></span> Zod Validation</li>
+                                    <li><span class="tech-icon"><i class="fas fa-box"></i></span> React Context API</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="project-section">
+                        <h3><i class="fas fa-folder-open"></i> Project Structure</h3>
+                        <div class="file-structure">
+                            <!-- Parent folder at top with line extending down -->
+                            <div class="parent-folder">
+                                <i class="fas fa-folder-open"></i> CALAIvercel/
+                                <div class="dash-line"></div>
+                            </div>
+                            
+                            <!-- Child items indented with connecting lines -->
+                            <div class="child-items">
+                                <!-- Hidden/Config Folders -->
+                                <div class="file">
+                                    <div class="connector-line"></div>
+                                    <i class="fas fa-folder"></i> .github/ <span class="file-comment"># GitHub CI/CD workflows</span>
+                                </div>
+                                <div class="file">
+                                    <div class="connector-line"></div>
+                                    <i class="fas fa-folder"></i> .next/ <span class="file-comment"># Next.js build cache</span>
+                                </div>
+                                
+                                <!-- Main App Structure -->
+                                <div class="file folder">
+                                    <div class="connector-line"></div>
+                                    <i class="fas fa-folder"></i> app/ <span class="file-comment"># Next.js 13+ App Router</span>
+                                    <div class="nested-files">
+                                        <div class="file">
+                                            <div class="connector-line"></div>
+                                            <i class="fas fa-file-code"></i> layout.tsx <span class="file-comment"># Root layout</span>
+                                        </div>
+                                        <div class="file">
+                                            <div class="connector-line"></div>
+                                            <i class="fas fa-folder"></i> api/ <span class="file-comment"># API endpoints</span>
+                                        </div>
+                                        <div class="file">
+                                            <div class="connector-line"></div>
+                                            <i class="fas fa-folder"></i> chat/ <span class="file-comment"># Chat interface routes</span>
+                                        </div>
+                                        <div class="file">
+                                            <div class="connector-line"></div>
+                                            <i class="fas fa-folder"></i> (marketing)/ <span class="file-comment"># Marketing pages group</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Continue with other folders... -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <style>
+                    .file-structure {
+                        font-family: 'Courier New', monospace;
+                        font-size: 14px;
+                        line-height: 1.8;
+                        position: relative;
+                        padding-left: 10px;
+                    }
+                    
+                    .parent-folder {
+                        font-weight: bold;
+                        position: relative;
+                        padding-bottom: 5px;
+                    }
+                    
+                    .dash-line {
+                        position: absolute;
+                        left: 8px;
+                        top: 100%;
+                        height: calc(100% - 25px);
+                        width: 1px;
+                        border-left: 1px dashed #666;
+                    }
+                    
+                    .child-items {
+                        position: relative;
+                        margin-left: 20px;
+                    }
+                    
+                    .file {
+                        position: relative;
+                        display: flex;
+                        align-items: center;
+                        margin: 2px 0;
+                    }
+                    
+                    .connector-line {
+                        position: absolute;
+                        left: -15px;
+                        width: 15px;
+                        height: 100%;
+                        border-left: 1px dashed #666;
+                        border-bottom: 1px dashed #666;
+                        border-bottom-left-radius: 5px;
+                    }
+                    
+                    .folder .connector-line {
+                        height: 50%;
+                    }
+                    
+                    .nested-files {
+                        margin-left: 20px;
+                    }
+                    
+                    .file i {
+                        margin-right: 5px;
+                        width: 16px;
+                        text-align: center;
+                    }
+                    
+                    .file-comment {
+                        color: #6a737d;
+                        margin-left: 8px;
+                        font-style: italic;
+                        font-size: 0.9em;
+                    }
+                    </style>
+                    
+                    <div class="project-footer">
+                        <a href="https://github.com/RomainBouchez/CalAi/" class="github-btn" target="_blank">
+                            <i class="fab fa-github"></i> View on GitHub
+                        </a>
+                        <div class="author-info">
+                            <p>Developed by Romain Bouchez</p>
+                            <p><i class="fas fa-envelope"></i> bouchez@et.esiea.fr</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- Project soon Modal -->
         <div id="project-soon-modal" class="modal">
@@ -751,7 +984,9 @@
                 <h2>More projects will be uploaded here soon</h2>
                 <p></p>
             </div>
-    </div>
+        </div>
+
+        
 </main>
 
 <footer>
